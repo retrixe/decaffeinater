@@ -1,10 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-export class Countdown extends React.Component {
+export default class Countdown extends React.Component {
   render() {
     return (
-      <div>{this.props.readState}</div>
+      <button onClick={this.props.readState}>click me dude</button>
     )
   }
 };

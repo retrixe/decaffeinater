@@ -11,7 +11,7 @@ class App extends React.Component {
   }
 
   changeConfig(newConfig, typeOfChange) {
-    switch(action.type) {
+    switch(typeOfChange) {
       case 'CONFIG_CHANGE_COMMAND':
         this.setState({command: newConfig});
       break;
@@ -23,7 +23,7 @@ class App extends React.Component {
   }
 
   readConfig() {
-    return this.state;
+    console.log(this.state);
   }
 
   render() {
