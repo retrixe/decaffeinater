@@ -6,12 +6,11 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },
-  "devDependencies": {
-    "babel-cli": "^6.16.0",
-    "babel-plugin-syntax-jsx": "^6.13.0",
-    "babel-preset-es2015": "^6.16.0"
-  },
   "scripts": {
-    "build": "babel src -d ."
+    "build": "tsc",
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^1.4.3"
   }
 }
