@@ -5,9 +5,9 @@
         "removeComments": true,
         "preserveConstEnums": true,
         "sourceMap": true,
-        "jsx": "react",
     },
     "files": [
-        "src/*",
-    ]
+        "main.tsx",
+        "inputs.tsx",
+    ],
 }
