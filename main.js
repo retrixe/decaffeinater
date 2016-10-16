@@ -1,6 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Inputs from './inputs';
 const {app, BrowserWindow} = require('electron');
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -49,24 +46,3 @@ app.on('activate', () => {
 })
 
 // In this file you can include the rest of your app's specific main process
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      pid: 0,
-      seconds: 0,
-    };
-  }
-
-  render() {
-    return (
-      <div>
-        <Inputs
-        changeConfig={(newState, type) => this.setState({type: newState*60})} />
-      </div>
-    );
-  }
-};
-
-ReactDOM.render(<App />, document.getElementById('app'));
