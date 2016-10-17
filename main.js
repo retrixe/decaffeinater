@@ -61,4 +61,4 @@ function test() {
     'Testing ReactDOM render'
   );
 };
-ReactDOM.render(React.createElement('test', null), document.getElementById("name"));
+ReactDOM.render(React.createElement('test', null), document.querySelector("name"));
