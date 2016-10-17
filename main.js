@@ -1,20 +1,12 @@
 'use strict';
 
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = require('react-dom');
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 var _require = require('electron');
 
 var app = _require.app;
 var BrowserWindow = _require.BrowserWindow;
 
+var React = require('react');
+var ReactDOM = require('react-dom');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -62,3 +54,11 @@ app.on('activate', function () {
 });
 
 // In this file you can include the rest of your app's specific main process
+function test() {
+  return React.createElement(
+    'p',
+    null,
+    'Testing ReactDOM render'
+  );
+};
+ReactDOM.render(React.createElement('test', null), document.getElementById("name"));
