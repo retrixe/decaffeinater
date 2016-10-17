@@ -1,16 +1,10 @@
-'use strict';
-
-var _require = require('electron');
-
-var app = _require.app;
-var BrowserWindow = _require.BrowserWindow;
-
-var React = require('react');
-var ReactDOM = require('react-dom');
+const {app, BrowserWindow} = require('electron');
+const React  = require('react');
+const ReactDOM = require('react-dom');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-var win = void 0;
+let win;
 
 function createWindow() {
   // Create the browser window.
@@ -54,6 +48,3 @@ app.on('activate', function () {
 });
 
 // In this file you can include the rest of your app's specific main process
-function App() {
-  return React.createElement('div', null);
-};
