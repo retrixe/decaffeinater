@@ -7,7 +7,7 @@
     "react-dom": "^15.3.2"
   },
   "scripts": {
-    "build": "babel src/* -d .",
+    "build": "babel src/* -d ..",
     "start": "electron ."
   },
   "devDependencies": {
