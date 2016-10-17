@@ -48,9 +48,3 @@ app.on('activate', () => {
 })
 
 // In this file you can include the rest of your app's specific main process
-function test() {
-  return (
-    <p>Testing ReactDOM render</p>
-  );
-};
-ReactDOM.render(<test />, document.getElementById("name"));
