@@ -54,11 +54,3 @@ app.on('activate', function () {
 });
 
 // In this file you can include the rest of your app's specific main process
-function test() {
-  return React.createElement(
-    'p',
-    null,
-    'Testing ReactDOM render'
-  );
-};
-ReactDOM.render(React.createElement('test', null), document.querySelector("name"));
