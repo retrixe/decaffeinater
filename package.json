@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "babel src -d .",
-    "start": "electron ."
+    "start": "npm run build && electron ."
   },
   "devDependencies": {
     "babel-cli": "^6.16.0",

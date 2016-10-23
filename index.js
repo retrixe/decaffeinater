@@ -21,19 +21,41 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Index = function (_React$Component) {
   _inherits(Index, _React$Component);
 
-  function Index() {
+  function Index(props) {
     _classCallCheck(this, Index);
 
-    return _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).call(this, props));
+
+    _this.state = {
+      time: 0,
+      process: "gg"
+    };
+    return _this;
   }
 
   _createClass(Index, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
-        "p",
+        "div",
         null,
-        "ohk"
+        _react2.default.createElement(
+          "button",
+          { onClick: function onClick() {
+              return _this2.setState({ time: 1 });
+            } },
+          "u mad bro? trololol *insert lenny face*"
+        ),
+        _react2.default.createElement(
+          "p",
+          null,
+          this.state.process,
+          " is the process and ",
+          this.state.time,
+          " is the time alotted to the program."
+        )
       );
     }
   }]);
