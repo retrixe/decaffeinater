@@ -6,18 +6,48 @@ class Index extends React.Component {
     super(props);
 
     this.state = {
-      time: 0,
-      process: "gg"
+      time: "",
+      process: ""
     };
+
+    this.onStart = this.onStart.bind(this);
+  }
+
+  onStart() {
+    /* eslint-disable no-console */
+    console.log(this.state.time);
+    console.log(this.state.process);
   }
 
   render() {
     return (
       <div>
-        <button onClick={() => this.setState({time: 1})}>u mad bro? trololol *insert lenny face*</button>
-        <p>{this.state.process} is the process and {this.state.time} is the time alotted to the program.</p>
+        <div className="input-group">
+          <span
+           className="input-group-addon"
+           id="sizing-addon1 basic-addon1">Seconds</span>
+          <input
+           className="form-control"
+           type="number"
+           placeholder="Insert amount of time to play."
+           value={this.state.time}
+           onInput={(e) => this.setState({time: e.target.value})} />
+        </div>
+        <div className="input-group">
+          <span
+           className="input-group-addon"
+           id="sizing-addon1 basic-addon1">PID</span>
+          <input
+           className="form-control"
+           type="text"
+           placeholder="Insert the process name of the game."
+           value={this.state.process}
+           onInput={(event) => this.setState({process: event.target.value})} />
+        </div>
+        <button className="btn btn-primary"
+         onClick={this.onStart}>Click to start.</button>
       </div>
-    ); 
+    );
   }
 }
 

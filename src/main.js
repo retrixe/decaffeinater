@@ -46,3 +46,5 @@ app.on("activate", function () {
 });
 
 // In this file you can include the rest of your app's specific main process
+function killProcess(pid) {
+}

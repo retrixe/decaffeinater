@@ -27,13 +27,22 @@ var Index = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).call(this, props));
 
     _this.state = {
-      time: 0,
-      process: "gg"
+      time: "",
+      process: ""
     };
+
+    _this.onStart = _this.onStart.bind(_this);
     return _this;
   }
 
   _createClass(Index, [{
+    key: "onStart",
+    value: function onStart() {
+      /* eslint-disable no-console */
+      console.log(this.state.time);
+      console.log(this.state.process);
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -42,19 +51,48 @@ var Index = function (_React$Component) {
         "div",
         null,
         _react2.default.createElement(
-          "button",
-          { onClick: function onClick() {
-              return _this2.setState({ time: 1 });
-            } },
-          "u mad bro? trololol *insert lenny face*"
+          "div",
+          { className: "input-group" },
+          _react2.default.createElement(
+            "span",
+            {
+              className: "input-group-addon",
+              id: "sizing-addon1 basic-addon1" },
+            "Seconds"
+          ),
+          _react2.default.createElement("input", {
+            className: "form-control",
+            type: "number",
+            placeholder: "Insert amount of time to play.",
+            value: this.state.time,
+            onInput: function onInput(e) {
+              return _this2.setState({ time: e.target.value });
+            } })
         ),
         _react2.default.createElement(
-          "p",
-          null,
-          this.state.process,
-          " is the process and ",
-          this.state.time,
-          " is the time alotted to the program."
+          "div",
+          { className: "input-group" },
+          _react2.default.createElement(
+            "span",
+            {
+              className: "input-group-addon",
+              id: "sizing-addon1 basic-addon1" },
+            "PID"
+          ),
+          _react2.default.createElement("input", {
+            className: "form-control",
+            type: "text",
+            placeholder: "Insert the process name of the game.",
+            value: this.state.process,
+            onInput: function onInput(event) {
+              return _this2.setState({ process: event.target.value });
+            } })
+        ),
+        _react2.default.createElement(
+          "button",
+          { className: "btn btn-primary",
+            onClick: this.onStart },
+          "Click to start."
         )
       );
     }
