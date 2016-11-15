@@ -57,16 +57,6 @@ var Index = function (_React$Component) {
                 return sleep(this.state.time * 1000);
 
               case 2:
-                /* Here we will insert our code to call a function named kill
-                in our electron main process using remote and passing the pid
-                argument to that function. */
-
-                // Diagnostic purposes
-                /* eslint-disable no-console */
-                console.log("sup");
-                /* eslint-enable no-console */
-
-              case 3:
               case "end":
                 return _context.stop();
             }

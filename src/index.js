@@ -20,14 +20,9 @@ class Index extends React.Component {
 
   async onStart() {
     await sleep(this.state.time*1000);
-    /* Here we will insert our code to call a function named kill
-    in our electron main process using remote and passing the pid
-    argument to that function. */
-
-    // Diagnostic purposes
-    /* eslint-disable no-console */
-    console.log("sup");
-    /* eslint-enable no-console */
+    /* Here we will insert our code to call a function named
+    killProcess in our electron main process using remote and
+    passing the pid argument to that function. */
   }
 
   render() {
