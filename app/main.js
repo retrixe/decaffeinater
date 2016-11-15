@@ -1,12 +1,12 @@
 "use strict";
 
-var _require = require("electron");
-
-var app = _require.app;
-var BrowserWindow = _require.BrowserWindow;
+var _require = require("electron"),
+    app = _require.app,
+    BrowserWindow = _require.BrowserWindow;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
+
 
 var win = void 0;
 
@@ -18,7 +18,7 @@ function createWindow() {
   win.loadURL("file://" + __dirname + "/index.html");
 
   // Open the DevTools.
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
 
   // Emitted when the window is closed.
   win.on("closed", function () {
@@ -52,3 +52,4 @@ app.on("activate", function () {
 });
 
 // In this file you can include the rest of your app's specific main process
+//# sourceMappingURL=main.js.map

@@ -10,13 +10,23 @@ var _reactDom = require("react-dom");
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+require("babel-polyfill");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function sleep(ms) {
+  return new Promise(function (resolve) {
+    return setTimeout(resolve, ms);
+  });
+}
 
 var Index = function (_React$Component) {
   _inherits(Index, _React$Component);
@@ -37,11 +47,39 @@ var Index = function (_React$Component) {
 
   _createClass(Index, [{
     key: "onStart",
-    value: function onStart() {
-      /* eslint-disable no-console */
-      console.log(this.state.time);
-      console.log(this.state.process);
-    }
+    value: function () {
+      var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return sleep(this.state.time * 1000);
+
+              case 2:
+                /* Here we will insert our code to call a function named kill
+                in our electron main process using remote and passing the pid
+                argument to that function. */
+
+                // Diagnostic purposes
+                /* eslint-disable no-console */
+                console.log("sup");
+                /* eslint-enable no-console */
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function onStart() {
+        return _ref.apply(this, arguments);
+      }
+
+      return onStart;
+    }()
   }, {
     key: "render",
     value: function render() {
@@ -82,7 +120,7 @@ var Index = function (_React$Component) {
           _react2.default.createElement("input", {
             className: "form-control",
             type: "text",
-            placeholder: "Insert the process name of the game.",
+            placeholder: "Insert the process name of the app.",
             value: this.state.process,
             onInput: function onInput(event) {
               return _this2.setState({ process: event.target.value });
@@ -102,3 +140,4 @@ var Index = function (_React$Component) {
 }(_react2.default.Component);
 
 _reactDom2.default.render(_react2.default.createElement(Index, null), document.getElementById("app"));
+//# sourceMappingURL=index.js.map

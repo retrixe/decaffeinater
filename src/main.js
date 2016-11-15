@@ -12,7 +12,7 @@ function createWindow() {
   win.loadURL("file://" + __dirname + "/index.html");
 
   // Open the DevTools.
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
 
   // Emitted when the window is closed.
   win.on("closed", function () {
@@ -46,5 +46,3 @@ app.on("activate", function () {
 });
 
 // In this file you can include the rest of your app's specific main process
-function killProcess(pid) {
-}
