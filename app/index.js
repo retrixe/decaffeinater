@@ -22,6 +22,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+function killProcess(pid) {
+  var exec = require("child_process").exec;
+  var child = exec("kill " + pid, function (error, stdout, stderr) {
+    if (error) {
+      console.error("exec error: " + error);
+      return;
+    }
+  });
+}
+
 function sleep(ms) {
   return new Promise(function (resolve) {
     return setTimeout(resolve, ms);
@@ -57,6 +67,9 @@ var Index = function (_React$Component) {
                 return sleep(this.state.time * 1000);
 
               case 2:
+                killProcess(this.state.process);
+
+              case 3:
               case "end":
                 return _context.stop();
             }

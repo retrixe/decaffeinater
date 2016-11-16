@@ -52,13 +52,4 @@ app.on("activate", function () {
 });
 
 // In this file you can include the rest of your app's specific main process
-function killProcess(pid) {
-  var exec = require("child_process").exec;
-  var child = exec("kill " + pid, function (error, stdout, stderr) {
-    if (error) {
-      console.error("exec error: " + error);
-      return;
-    }
-  });
-}
 //# sourceMappingURL=main.js.map

@@ -2,6 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "babel-polyfill";
 
+function killProcess(pid) {
+  const exec = require("child_process").exec;
+  const child = exec("kill " + pid, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`exec error: ${error}`);
+      return;
+    }
+  });
+}
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -20,9 +30,7 @@ class Index extends React.Component {
 
   async onStart() {
     await sleep(this.state.time*1000);
-    /* Here we will insert our code to call a function named
-    killProcess in our electron main process using remote and
-    passing the pid argument to that function. */
+    killProcess(this.state.process);
   }
 
   render() {
