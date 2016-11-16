@@ -3,7 +3,7 @@ This thing is for people who just spend way too much time gaming when they shoul
 
 Built with React and Electron, for those who want to know.
 
-### Advance warning: not ready for production.
+### No compatibility with Windows as of yet, you'll need to wait till 1.1, I guess. 
 
 ## Installation
 Right now we are about to use electron-builder to package this app, but right now they aren't ready. So you need to set up a development environment and get it working.
