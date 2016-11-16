@@ -19,7 +19,7 @@ Finally, open a terminal window in the folder where the app is located and execu
 > npm start
 ```
 ### Recommended development tools:
-- [ ]Atom with linter-eslint package, or Visual Studio Code.
-- [ ]Node.js v6/v7
-- [ ]Yarn package manage instead of npm
-- [ ]React development tools on Electron ([refer here](https://github.com/electron/electron/blob/master/docs/tutorial/devtools-extension.md))
+- [ ] Atom with linter-eslint package, or Visual Studio Code.
+- [ ] Node.js v6/v7
+- [ ] Yarn package manage instead of npm
+- [ ] React development tools on Electron ([refer here](https://github.com/electron/electron/blob/master/docs/tutorial/devtools-extension.md))
