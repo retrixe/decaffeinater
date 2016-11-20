@@ -29,7 +29,7 @@ class Index extends React.Component {
   }
 
   async onStart() {
-    await sleep(this.state.time*1000);
+    await sleep(this.state.time*1000*60);
     killProcess(this.state.process);
   }
 
@@ -39,7 +39,7 @@ class Index extends React.Component {
         <div className="input-group">
           <span
             className="input-group-addon"
-            id="sizing-addon1 basic-addon1">Seconds</span>
+            id="sizing-addon1 basic-addon1">Minutes</span>
           <input
             className="form-control"
             type="number"
@@ -50,16 +50,16 @@ class Index extends React.Component {
         <div className="input-group">
           <span
             className="input-group-addon"
-            id="sizing-addon1 basic-addon1">PID</span>
+            id="sizing-addon1 basic-addon1">Process</span>
           <input
             className="form-control"
             type="text"
             placeholder="Insert the process name of the app."
-           value={this.state.process}
-           onInput={(event) => this.setState({process: event.target.value})} />
+            value={this.state.process}
+            onInput={(event) => this.setState({process: event.target.value})} />
         </div>
         <button className="btn btn-primary"
-         onClick={this.onStart}>Click to start.</button>
+          onClick={this.onStart}>Click to start.</button>
       </div>
     );
   }

@@ -64,7 +64,7 @@ var Index = function (_React$Component) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return sleep(this.state.time * 1000);
+                return sleep(this.state.time * 1000 * 60);
 
               case 2:
                 killProcess(this.state.process);
@@ -99,7 +99,7 @@ var Index = function (_React$Component) {
             {
               className: "input-group-addon",
               id: "sizing-addon1 basic-addon1" },
-            "Seconds"
+            "Minutes"
           ),
           _react2.default.createElement("input", {
             className: "form-control",
@@ -118,7 +118,7 @@ var Index = function (_React$Component) {
             {
               className: "input-group-addon",
               id: "sizing-addon1 basic-addon1" },
-            "PID"
+            "Process"
           ),
           _react2.default.createElement("input", {
             className: "form-control",
