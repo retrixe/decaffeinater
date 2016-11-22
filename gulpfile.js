@@ -3,7 +3,9 @@ var sourcemaps = require("gulp-sourcemaps");
 var babel = require("gulp-babel");
 var sass = require("gulp-sass");
 
-gulp.task("default", function() {
+gulp.task("default", ["html", "babel", "styles"]);
+
+gulp.task("watch", function() {
   gulp.watch("src/**/*.scss", ["styles"]);
   gulp.watch("src/**/*.js", ["babel"]);
   gulp.watch("src/**/*.html", ["html"]);

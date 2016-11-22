@@ -1,27 +1,42 @@
 {
   "name": "decaffeinater",
-  "version": "0.1.0",
+  "description": "An app which closes apps if you use them too much.",
+  "version": "1.0.0",
   "main": "app/main.js",
   "dependencies": {
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },
   "scripts": {
-    "build": "gulp styles babel html",
-    "watch": "gulp default",
-    "start": "npm run build && electron ."
+    "build": "gulp default",
+    "watch": "gulp watch",
+    "start": "npm run build && electron .",
+    "pack": "build --dir",
+    "dist": "build"
   },
   "devDependencies": {
     "babel-polyfill": "^6.16.0",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "electron": "^1.4.6",
+    "electron-builder": "^8.6.0",
     "eslint": "^3.8.0",
     "eslint-plugin-react": "^6.4.1",
     "gulp": "^3.9.1",
-    "gulp-cli": "^1.2.2",
     "gulp-babel": "^6.1.2",
+    "gulp-cli": "^1.2.2",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^2.2.0"
+  },
+  "build": {
+    "appId": "com.decaffeinater",
+    "mac": {
+      "category": "public.app-category.productivity"
+    },
+    "linux": {
+      "target": "deb",
+      "synopsis": "For people who play or use apps TOO MUCH.",
+      "category": "Utility"
+    }
   }
 }

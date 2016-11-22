@@ -24,7 +24,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function killProcess(pid) {
   var exec = require("child_process").exec;
-  var child = exec("killall -9 " + pid, function (error, stdout, stderr) {
+  var child = exec("killall -9" + pid, function (error, stdout, stderr) {
     if (error) {
       console.error("exec error: " + error);
       return;
