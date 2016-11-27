@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "main": "app/main.js",
   "dependencies": {
-    "gulp-cli": "^1.2.2",
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },
@@ -25,6 +24,7 @@
     "eslint-plugin-react": "^6.7.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "gulp-cli": "^1.2.2",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^2.2.0"
   },
