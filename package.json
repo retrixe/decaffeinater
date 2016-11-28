@@ -36,7 +36,8 @@
     "linux": {
       "target": "deb",
       "synopsis": "For people who play or use apps TOO MUCH.",
-      "category": "Utility"
+      "category": "Utility",
+      "desktop": "build/decaffeinater.desktop"
     }
   }
 }
