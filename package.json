@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "main": "app/main.js",
   "dependencies": {
+    "babel-polyfill": "^6.16.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },
@@ -15,7 +16,6 @@
     "dist": "build"
   },
   "devDependencies": {
-    "babel-polyfill": "^6.16.0",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "electron": "^1.4.6",
