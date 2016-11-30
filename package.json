@@ -35,7 +35,7 @@
     },
     "linux": {
       "target": "deb",
-      "synopsis": "For people who play or use apps TOO MUCH.",
+      "synopsis": "An app which closes apps if you use them too much.",
       "category": "Utility",
       "desktop": "build/decaffeinater.desktop"
     }
