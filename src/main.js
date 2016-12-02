@@ -1,5 +1,6 @@
-const {app, BrowserWindow} = require("electron");
+const {app, BrowserWindow, ipcMain} = require("electron");
 //import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
+import killProcess from "./killProc";
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -56,3 +57,6 @@ app.on("activate", function () {
 });
 
 // In this file you can include the rest of your app's specific main process
+ipcMain.on("iCanKill?", (event, arg) => {
+  killProcess(arg, process.platform);
+});

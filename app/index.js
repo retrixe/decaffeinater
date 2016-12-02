@@ -2,6 +2,10 @@
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+require("babel-polyfill");
+
+var _electron = require("electron");
+
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
@@ -20,22 +24,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-require("babel-polyfill");
-
-
 function killProcess(pid) {
-  var exec = require("child_process").exec;
-  var child = exec("killall -9" + pid, function (error, stdout, stderr) {
-    if (error) {
-      console.error("exec error: " + error);
-      return;
-    }
-  });
+  _electron.ipcRenderer.send("iCanKill?", pid);
 }
 
 function sleep(s) {
   return new Promise(function (resolve) {
-    return setTimeout(resolve, ms * 1000);
+    return setTimeout(resolve, s * 1000);
   });
 }
 
@@ -48,8 +43,9 @@ var Index = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).call(this, props));
 
     _this.state = {
-      time: "",
-      process: ""
+      time: 0,
+      process: "",
+      countdown: 0
     };
 
     _this.onStart = _this.onStart.bind(_this);
@@ -60,17 +56,37 @@ var Index = function (_React$Component) {
     key: "onStart",
     value: function () {
       var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
+        var i, time;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return sleep(this.state.time * 60);
-
-              case 2:
-                killProcess(this.state.process);
+                i = 0;
+                time = this.state.time * 60;
+                i = 0;
 
               case 3:
+                if (!(i < this.state.time * 60)) {
+                  _context.next = 10;
+                  break;
+                }
+
+                _context.next = 6;
+                return sleep(1);
+
+              case 6:
+                this.setState({ countdown: this.state.countdown + 1 });
+
+              case 7:
+                i++;
+                _context.next = 3;
+                break;
+
+              case 10:
+                killProcess(this.state.process);
+                this.setState({ countdown: 0 });
+
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -135,7 +151,17 @@ var Index = function (_React$Component) {
           { className: "btn btn-primary",
             onClick: this.onStart },
           "Click to start."
-        )
+        ),
+        _react2.default.createElement(
+          "div",
+          { "class": "text-xs-center", id: "countdown-statement" },
+          "Time left to finish: ",
+          this.state.countdown,
+          " out of ",
+          this.state.time * 60,
+          "."
+        ),
+        _react2.default.createElement("progress", { "class": "progress", value: this.state.countdown, max: this.state.time * 60, "aria-describedby": "countdown-statement" })
       );
     }
   }]);

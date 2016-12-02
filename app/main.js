@@ -1,14 +1,20 @@
 "use strict";
 
+var _killProc = require("./killProc");
+
+var _killProc2 = _interopRequireDefault(_killProc);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var _require = require("electron"),
     app = _require.app,
-    BrowserWindow = _require.BrowserWindow;
+    BrowserWindow = _require.BrowserWindow,
+    ipcMain = _require.ipcMain;
 //import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-
-
 var win = void 0;
 
 function createWindow() {
@@ -62,4 +68,7 @@ app.on("activate", function () {
 });
 
 // In this file you can include the rest of your app's specific main process
+ipcMain.on("iCanKill?", function (event, arg) {
+  (0, _killProc2.default)(arg, process.platform);
+});
 //# sourceMappingURL=main.js.map

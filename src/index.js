@@ -1,19 +1,14 @@
-require("babel-polyfill");
+import "babel-polyfill";
+import {ipcRenderer} from "electron";
 import React from "react";
 import ReactDOM from "react-dom";
 
 function killProcess(pid) {
-  const exec = require("child_process").exec;
-  const child = exec("killall -9" + pid, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`exec error: ${error}`);
-      return;
-    }
-  });
+  ipcRenderer.send("iCanKill?", pid);
 }
 
 function sleep(s) {
-  return new Promise(resolve => setTimeout(resolve, ms*1000));
+  return new Promise(resolve => setTimeout(resolve, s*1000));
 }
 
 class Index extends React.Component {
@@ -21,16 +16,23 @@ class Index extends React.Component {
     super(props);
 
     this.state = {
-      time: "",
-      process: ""
+      time: 0,
+      process: "",
+      countdown: 0
     };
 
     this.onStart = this.onStart.bind(this);
   }
 
   async onStart() {
-    await sleep(this.state.time*60);
+    let i = 0;
+    let time = this.state.time*60;
+    for (i = 0; i < this.state.time*60; i++) {
+      await sleep(1);
+      this.setState({countdown: this.state.countdown+1});
+    }
     killProcess(this.state.process);
+    this.setState({countdown: 0});
   }
 
   render() {
@@ -60,6 +62,8 @@ class Index extends React.Component {
         </div>
         <button className="btn btn-primary"
           onClick={this.onStart}>Click to start.</button>
+        <div class="text-xs-center" id="countdown-statement">Time left to finish: {this.state.countdown} out of {this.state.time*60}.</div>
+        <progress class="progress" value={this.state.countdown} max={this.state.time*60} aria-describedby="countdown-statement"></progress>
       </div>
     );
   }
