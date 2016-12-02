@@ -1,13 +1,17 @@
 "use strict";
 
+var _electronDevtoolsInstaller = require("electron-devtools-installer");
+
+var _electronDevtoolsInstaller2 = _interopRequireDefault(_electronDevtoolsInstaller);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var _require = require("electron"),
     app = _require.app,
     BrowserWindow = _require.BrowserWindow;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-
-
 var win = void 0;
 
 function createWindow() {
@@ -18,7 +22,7 @@ function createWindow() {
   win.loadURL("file://" + __dirname + "/index.html");
 
   // Open the DevTools.
-  // win.webContents.openDevTools();
+  win.webContents.openDevTools();
 
   // Emitted when the window is closed.
   win.on("closed", function () {
@@ -33,6 +37,17 @@ function createWindow() {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on("ready", createWindow);
+
+// Call the developer tools (commented out, uncomment if you wish to use)
+/* eslint-disable no-console */
+
+(0, _electronDevtoolsInstaller2.default)(_electronDevtoolsInstaller.REACT_DEVELOPER_TOOLS).then(function (name) {
+  return console.log("Added Extension:  " + name);
+}).catch(function (err) {
+  return console.log('An error occurred: ', err);
+});
+
+/* eslint-enable no-console */
 
 // Quit when all windows are closed.
 app.on("window-all-closed", function () {

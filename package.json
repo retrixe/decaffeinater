@@ -12,14 +12,15 @@
     "build": "gulp default",
     "watch": "gulp watch",
     "start": "npm run build && electron .",
-    "pack": "build --dir",
-    "dist": "build"
+    "pack": "npm run build && build --dir",
+    "dist": "npm run build && build"
   },
   "devDependencies": {
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "electron": "^1.4.10",
     "electron-builder": "^10.4.1",
+    "electron-devtools-installer": "^2.0.1",
     "eslint": "^3.11.1",
     "eslint-plugin-react": "^6.7.1",
     "gulp": "^3.9.1",
@@ -36,7 +37,8 @@
     "linux": {
       "target": "deb",
       "synopsis": "An app which closes apps if you use them too much.",
-      "category": "Utility"
+      "category": "Utility",
+      "desktop": "build/decaffeinater.desktop"
     }
   }
 }
