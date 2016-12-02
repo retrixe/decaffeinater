@@ -1,5 +1,5 @@
 const {app, BrowserWindow} = require("electron");
-import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
+//import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -13,7 +13,7 @@ function createWindow() {
   win.loadURL("file://" + __dirname + "/index.html");
 
   // Open the DevTools.
-  win.webContents.openDevTools();
+  //win.webContents.openDevTools();
 
   // Emitted when the window is closed.
   win.on("closed", function () {
@@ -32,9 +32,9 @@ app.on("ready", createWindow);
 // Call the developer tools (commented out, uncomment if you wish to use)
 /* eslint-disable no-console */
 
-installExtension(REACT_DEVELOPER_TOOLS)
-  .then((name) => console.log(`Added Extension:  ${name}`))
-  .catch((err) => console.log('An error occurred: ', err));
+//installExtension(REACT_DEVELOPER_TOOLS)
+//  .then((name) => console.log(`Added Extension:  ${name}`))
+//  .catch((err) => console.log('An error occurred: ', err));
 
 /* eslint-enable no-console */
 

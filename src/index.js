@@ -1,6 +1,6 @@
+require("babel-polyfill");
 import React from "react";
 import ReactDOM from "react-dom";
-import "babel-polyfill";
 
 function killProcess(pid) {
   const exec = require("child_process").exec;
@@ -12,8 +12,8 @@ function killProcess(pid) {
   });
 }
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+function sleep(s) {
+  return new Promise(resolve => setTimeout(resolve, ms*1000));
 }
 
 class Index extends React.Component {
@@ -29,7 +29,7 @@ class Index extends React.Component {
   }
 
   async onStart() {
-    await sleep(this.state.time*1000*60);
+    await sleep(this.state.time*60);
     killProcess(this.state.process);
   }
 
