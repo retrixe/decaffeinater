@@ -1,7 +1,7 @@
 {
   "name": "decaffeinater",
   "description": "An app which closes apps if you use them too much.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "app/main.js",
   "dependencies": {
     "babel-polyfill": "^6.16.0",

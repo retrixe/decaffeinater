@@ -62,8 +62,8 @@ class Index extends React.Component {
         </div>
         <button className="btn btn-primary"
           onClick={this.onStart}>Click to start.</button>
-        <div class="text-xs-center" id="countdown-statement">Time left to finish: {this.state.countdown} out of {this.state.time*60}.</div>
-        <progress class="progress" value={this.state.countdown} max={this.state.time*60} aria-describedby="countdown-statement"></progress>
+        <div className="text-xs-center" id="countdown-statement">Time left to finish: {this.state.time*60-this.state.countdown} seconds left, out of {this.state.time*60} seconds.</div>
+        <progress className="progress extend-width" value={this.state.countdown} max={this.state.time*60} aria-describedby="countdown-statement"></progress>
       </div>
     );
   }
