@@ -40,7 +40,7 @@ To compile binaries, you require a development environment (refer to Setting up 
 ### Compiling for another OS from your current OS.
 If you wish to create a package for another OS from your current OS, you need to get necessary tools which enable electron-builder to compile cross-platform.
 1. Setup a development environment.
-2. Follow instructions [here]() to setup cross-platform compilation.
+2. Follow instructions [here](https://github.com/electron-userland/electron-builder/wiki/Multi-Platform-Build) to setup cross-platform compilation.
 3. Now, you can execute the command of your choice from the above section to compile a binary.
 
 ## Setting up a development environment
