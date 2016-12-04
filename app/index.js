@@ -56,37 +56,38 @@ var Index = function (_React$Component) {
     key: "onStart",
     value: function () {
       var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
-        var i, time;
+        var i, time, process;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 i = 0;
                 time = this.state.time * 60;
+                process = JSON.parse(JSON.stringify(this.state)).process;
                 i = 0;
 
-              case 3:
+              case 4:
                 if (!(i < this.state.time * 60)) {
-                  _context.next = 10;
+                  _context.next = 11;
                   break;
                 }
 
-                _context.next = 6;
+                _context.next = 7;
                 return sleep(1);
 
-              case 6:
+              case 7:
                 this.setState({ countdown: this.state.countdown + 1 });
 
-              case 7:
+              case 8:
                 i++;
-                _context.next = 3;
+                _context.next = 4;
                 break;
 
-              case 10:
-                killProcess(this.state.process);
+              case 11:
+                killProcess(process);
                 this.setState({ countdown: 0 });
 
-              case 12:
+              case 13:
               case "end":
                 return _context.stop();
             }

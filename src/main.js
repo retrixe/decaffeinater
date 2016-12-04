@@ -1,6 +1,14 @@
-const {app, BrowserWindow, ipcMain} = require("electron");
-//import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
+import {app, BrowserWindow, ipcMain} from "electron";
 import killProcess from "./killProc";
+/* eslint-disable no-unused-vars */
+try {
+  const installExtension = require("electron-devtools-installer");
+  const {REACT_DEVELOPER_TOOLS} = require("electron-devtools-installer");
+  var productionMode = false;
+} catch(err) {
+  var productionMode = true;
+}
+/* eslint-enable no-unused-vars */
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -14,7 +22,9 @@ function createWindow() {
   win.loadURL("file://" + __dirname + "/index.html");
 
   // Open the DevTools.
-  //win.webContents.openDevTools();
+  if (productionMode === false) {
+    win.webContents.openDevTools();
+  }
 
   // Emitted when the window is closed.
   win.on("closed", function () {
@@ -30,14 +40,19 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.on("ready", createWindow);
 
-// Call the developer tools (commented out, uncomment if you wish to use)
+// Inject React developer tool extension.
 /* eslint-disable no-console */
-
-//installExtension(REACT_DEVELOPER_TOOLS)
-//  .then((name) => console.log(`Added Extension:  ${name}`))
-//  .catch((err) => console.log('An error occurred: ', err));
+/* eslint-disable no-undef */
+if (productionMode === false) {
+  try {
+    installExtension(REACT_DEVELOPER_TOOLS)
+      .then((name) => console.log(`Added Extension:  ${name}`))
+      .catch((err) => console.log("An error occurred: ", err));
+  } catch(err) {}
+}
 
 /* eslint-enable no-console */
+/* eslint-enable no-undef */
 
 // Quit when all windows are closed.
 app.on("window-all-closed", function () {

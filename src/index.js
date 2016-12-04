@@ -27,11 +27,12 @@ class Index extends React.Component {
   async onStart() {
     let i = 0;
     let time = this.state.time*60;
+    let process = JSON.parse(JSON.stringify(this.state)).process;
     for (i = 0; i < this.state.time*60; i++) {
       await sleep(1);
       this.setState({countdown: this.state.countdown+1});
     }
-    killProcess(this.state.process);
+    killProcess(process);
     this.setState({countdown: 0});
   }
 
