@@ -1,21 +1,20 @@
 # decaffeinater
-This thing is for people who just spend way too much time gaming when they should be utilizing time for more productive purposes. This app fixes that. Essentially, select the time, select the app, and use the app until decaffeinater automatically kills it, lol. Kinda hardcore but hehe. Built with React and Electron, for those who want to know.
+This thing is for people who just spend way too much time gaming when they should be utilizing time for more productive purposes. This app fixes that. Essentially, select the time, select the app, and use the app until decaffeinater automatically kills it. Kinda hardcore. Built with React and Electron :D
 
-## Installation
-### Windows, macOS, and two-thirds on the Linux section is a stub. Concrete instructions for Windows on the way.
+## Installation (quick copy-and-paste job, for more clarity, open an issue in the issue section :3 )
 ### Windows
-[Click here](https://github.com/ibujs/decaffeinater/releases) to go to the releases page, and download the .exe file from there and install it.
+[Click here](https://github.com/ibujs/decaffeinater/releases) to go to the releases page, and download the .exe file for the latest stable release from there and install it.
 
-### macOS
+### macOS (stub due to unavoidable compilation errors)
 Refer to compiling binaries.
 
 ### Linux
 #### Using apt on Debian, Ubuntu, and their devriatives.
-[Click here](https://github.com/ibujs/decaffeinater/releases) to go to the releases page, and download the .deb file from there and install it.
+[Click here](https://github.com/ibujs/decaffeinater/releases) to go to the releases page, and download the .deb file for the latest stable release from there and install it.
 #### Using rpm.
-Refer to compiling binaries.
+[Click here](https://github.com/ibujs/decaffeinater/releases) to go to the releases page, and download the .rpm file for the latest stable release from there and install it.
 #### Using a binary.
-Refer to compiling binaries.
+[Click here](https://github.com/ibujs/decaffeinater/releases) to go to the releases page, and download the .tar.gz file for the latest stable release from there and install it.
 
 ## Compiling binaries
 To compile binaries, you require a development environment (refer to Setting up a development environment) after which you can run the following commands to compile an executable, which you will find in a dist folder.
