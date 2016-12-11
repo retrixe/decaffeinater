@@ -1,0 +1,26 @@
+version: '1.1.{build}'
+
+platform:
+  - x64
+
+cache:
+  - node_modules
+  - app\node_modules
+  - '%APPDATA%\npm-cache'
+  - '%USERPROFILE%\.electron'
+  - '%APPDATA%\Yarn'
+
+init:
+  - git config --global core.autocrlf input
+
+install:
+  - ps: Install-Product node 7 x64
+  - git reset --hard HEAD
+  - npm install npm yarn -g
+  - yarn
+  - cd app\ && yarn && cd ..
+
+build_script:
+  - yarn dist -- --win
+
+test: off
