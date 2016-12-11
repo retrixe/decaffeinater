@@ -2,6 +2,10 @@ osx_image: xcode8.1
  
 sudo: required
 dist: trusty
+
+os:
+  - linux
+  - osx
  
 language: node_js
  
@@ -25,8 +29,8 @@ addons:
       - xz-utils
 
 script:
-  - test "$TRAVIS_OS_NAME" == "osx" && (yarn dist -- --mac dmg)
-  - test "$TRAVIS_OS_NAME" == "linux" && (yarn dist -- --linux deb rpm)
+  - test "$TRAVIS_OS_NAME" == "osx" && (yarn dist -- --mac dmg) || (exit 0)
+  - test "$TRAVIS_OS_NAME" == "linux" && (yarn dist -- --linux deb rpm) || (exit 0)
  
 branches:
   only:
