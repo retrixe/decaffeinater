@@ -22,7 +22,7 @@ addons:
       - rpm
       - graphicsmagick
       - icnsutils
-      - xz-util
+      - xz-utils
 
 script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then yarn dist -- --mac dmg
