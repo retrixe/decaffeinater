@@ -1,0 +1,32 @@
+osx_image: xcode8.1
+
+sudo: required
+dist: trusty
+
+language: node_js
+
+node_js:
+  - "node"
+
+cache:
+  directories:
+  - node_modules
+  - app/node_modules
+  - $HOME/.electron
+  - $HOME/.cache
+  yarn: true
+
+addons:
+  apt:
+    packages:
+      - rpm
+      - graphicsmagick
+      - icnsutils
+      - xz-util
+
+script:
+- yarn dist -- --mac dmg --linux deb rpm
+
+branches:
+  only:
+    - master
