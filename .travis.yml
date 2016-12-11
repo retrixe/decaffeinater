@@ -22,9 +22,8 @@ addons:
     - icnsutils
     - xz-utils
 script:
-  - test "$TRAVIS_OS_NAME" == "osx" && (yarn dist -- --mac dmg) || (exit 0)
+  - test "$TRAVIS_OS_NAME" == "osx" && (yarn dist -- --mac dmg && ls dist/mac) || (exit 0)
   - test "$TRAVIS_OS_NAME" == "linux" && (yarn dist -- --linux deb rpm tar.gz) || (exit 0)
-  - ls dist/
 branches:
   only:
   - master

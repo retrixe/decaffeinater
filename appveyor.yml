@@ -23,4 +23,16 @@ install:
 build_script:
   - yarn dist -- --win
 
+deploy:
+  release: editneeded-v$(appveyor_build_version)
+  description: 'To be edited.'
+  provider: GitHub
+  auth_token:
+    secure: T8t62rU22Km1wugss8JUpuVCKID9uSgZjPFPTwITnyIxPIKuyHKI80Uvimj6RNrk
+  artifact: /.*\.exe/
+  draft: true
+  prerelease: false
+  on:
+    appveyor_repo_tag: true
+
 test: off
