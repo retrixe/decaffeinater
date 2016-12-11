@@ -7,6 +7,8 @@
   "dependencies": {
     "babel-polyfill": "^6.16.0",
     "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react-dom": "^15.3.2",
+    "semantic-ui-css": "^2.2.4",
+    "semantic-ui-react": "^0.62.1"
   }
 }

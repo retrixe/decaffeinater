@@ -14,11 +14,7 @@ var _reactDom = require("react-dom");
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _materialUi = require("material-ui");
-
-var _reactTapEventPlugin = require("react-tap-event-plugin");
-
-var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
+var _semanticUiReact = require("semantic-ui-react");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30,9 +26,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // polyfill to use async/await.
 // ipc communication to main process.
-// material design based ui framework.
 
-// Needed for onTouchTap in material-ui http://stackoverflow.com/a/34015469/988941
+// Following imports for semantic ui, awsm CSS framework :D
 
 
 // Sends ipc message to main process to kill app when called.
@@ -135,42 +130,36 @@ var Index = function (_React$Component) {
       var _this2 = this;
 
       return _react2.default.createElement(
-        _materialUi.MuiThemeProvider,
+        "div",
         null,
+        _react2.default.createElement(_semanticUiReact.Input, {
+          label: "Time (in minutes)",
+          type: "number", fluid: true,
+          placeholder: "Insert amount of time to play.",
+          onChange: function onChange(e) {
+            return _this2.setState({ time: e.target.value });
+          } }),
+        _react2.default.createElement(_semanticUiReact.Input, {
+          label: "Process",
+          type: "text", fluid: true,
+          placeholder: "Insert the process name of the app.",
+          onChange: function onChange(event) {
+            return _this2.setState({ process: event.target.value });
+          } }),
+        _react2.default.createElement("br", null),
+        _react2.default.createElement(_semanticUiReact.Button, { onClick: this.onStart, content: "Click to start", inverted: true, fluid: true, color: "green" }),
+        _react2.default.createElement("br", null),
         _react2.default.createElement(
           "div",
           null,
-          _react2.default.createElement(_materialUi.TextField, {
-            floatingLabelText: "Time (in minutes)",
-            type: "number", fullWidth: true,
-            hintText: "Insert amount of time to play.",
-            value: this.state.time,
-            onChange: function onChange(e) {
-              return _this2.setState({ time: e.target.value });
-            } }),
-          _react2.default.createElement("br", null),
-          _react2.default.createElement(_materialUi.TextField, {
-            floatingLabelText: "Process name",
-            type: "text", fullWidth: true,
-            hintText: "Insert the process name of the app.",
-            value: this.state.process,
-            onChange: function onChange(event) {
-              return _this2.setState({ process: event.target.value });
-            } }),
-          _react2.default.createElement("br", null),
-          _react2.default.createElement(_materialUi.RaisedButton, { onTouchTap: this.onStart, label: "Click to start", primary: true, fullWidth: true }),
-          _react2.default.createElement("br", null),
-          _react2.default.createElement(
-            "div",
-            { className: "text-xs-center", id: "countdown-statement" },
-            "Time left to finish: ",
-            this.state.time * 60 - this.state.countdown,
-            " seconds left, out of ",
-            this.state.time * 60,
-            " seconds."
-          ),
-          _react2.default.createElement("progress", { className: "progress", style: { width: "100%" }, value: this.state.countdown, max: this.state.time * 60, "aria-describedby": "countdown-statement" })
-        )
+          "Time left to finish: ",
+          this.state.time * 60 - this.state.countdown,
+          " seconds left, out of ",
+          this.state.time * 60,
+          " seconds."
+        ),
+        _react2.default.createElement(_semanticUiReact.Progress, { value: this.state.countdown, indicating: true, total: this.state.time * 60 }),
+        ">"
       );
     }
   }]);
@@ -178,7 +167,8 @@ var Index = function (_React$Component) {
   return Index;
 }(_react2.default.Component);
 
-(0, _reactTapEventPlugin2.default)();
 // Render final app to the screen :D
+
+
 _reactDom2.default.render(_react2.default.createElement(Index, null), document.getElementById("app"));
 //# sourceMappingURL=index.js.map

@@ -5,10 +5,10 @@
   "main": "app/main.js",
   "dependencies": {
     "babel-polyfill": "^6.20.0",
-    "material-ui": "^0.16.5",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-tap-event-plugin": "^2.0.1"
+    "semantic-ui-css": "^2.2.4",
+    "semantic-ui-react": "^0.62.1"
   },
   "scripts": {
     "build": "gulp default",
