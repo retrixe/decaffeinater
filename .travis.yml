@@ -25,8 +25,8 @@ addons:
       - xz-utils
 
 script:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then yarn dist -- --mac dmg
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then yarn dist -- --linux deb rpm
+  - test "$TRAVIS_OS_NAME" == "osx" && (yarn dist -- --mac dmg)
+  - test "$TRAVIS_OS_NAME" == "linux" && (yarn dist -- --linux deb rpm)
  
 branches:
   only:
