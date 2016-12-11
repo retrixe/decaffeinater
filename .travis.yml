@@ -1,16 +1,13 @@
+osx_image: xcode8.1
+ 
+sudo: required
+dist: trusty
+ 
 language: node_js
-
+ 
 node_js:
   - "node"
-  
- matrix:
-  include:
-    - os: linux
-      dist: trusty
-      sudo: required
-    - os: osx
-      osx_image: xcode8.1
-
+ 
 cache:
   directories:
   - node_modules
@@ -18,7 +15,7 @@ cache:
   - $HOME/.electron
   - $HOME/.cache
   yarn: true
-
+ 
 addons:
   apt:
     packages:
@@ -30,7 +27,7 @@ addons:
 script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then yarn dist -- --mac dmg
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then yarn dist -- --linux deb rpm
-
+ 
 branches:
   only:
-    - master
+  - master
