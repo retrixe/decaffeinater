@@ -9,15 +9,18 @@ var _killProc2 = _interopRequireDefault(_killProc);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* eslint-disable no-unused-vars */
+
+/* eslint-env node */
+var productionMode = void 0;
 try {
   var _installExtension = require("electron-devtools-installer");
 
   var _require = require("electron-devtools-installer"),
       _REACT_DEVELOPER_TOOLS = _require.REACT_DEVELOPER_TOOLS;
 
-  var productionMode = false;
+  productionMode = false;
 } catch (err) {
-  var productionMode = true;
+  productionMode = true;
 }
 /* eslint-enable no-unused-vars */
 
@@ -61,7 +64,9 @@ if (productionMode === false) {
     }).catch(function (err) {
       return console.log("An error occurred: ", err);
     });
-  } catch (err) {}
+  } catch (err) {
+    "do nothing";
+  }
 }
 
 /* eslint-enable no-console */

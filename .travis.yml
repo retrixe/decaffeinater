@@ -22,7 +22,7 @@ addons:
     - icnsutils
     - xz-utils
 script:
-  - test "$TRAVIS_OS_NAME" == "osx" && (yarn dist -- --mac dmg && ls dist/mac) || (exit 0)
+  - test "$TRAVIS_OS_NAME" == "osx" && (yarn dist -- --mac dmg) || (exit 0)
   - test "$TRAVIS_OS_NAME" == "linux" && (yarn dist -- --linux deb rpm tar.gz) || (exit 0)
 branches:
   only:
@@ -35,5 +35,6 @@ deploy:
     - decaffeinater-1.1.0.rpm
     - decaffeinater-1.1.0.tar.gz
     - decaffeinater_1.1.0_amd64.deb
+    - decaffeinater-1.1.0.dmg
   on:
     tags: true
