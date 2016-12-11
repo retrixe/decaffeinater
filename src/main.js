@@ -1,12 +1,15 @@
+/* eslint-env node */
 import {app, BrowserWindow, ipcMain} from "electron";
 import killProcess from "./killProc";
 /* eslint-disable no-unused-vars */
+
+let productionMode;
 try {
   const installExtension = require("electron-devtools-installer");
   const {REACT_DEVELOPER_TOOLS} = require("electron-devtools-installer");
-  var productionMode = false;
+  productionMode = false;
 } catch(err) {
-  var productionMode = true;
+  productionMode = true;
 }
 /* eslint-enable no-unused-vars */
 
@@ -48,7 +51,9 @@ if (productionMode === false) {
     installExtension(REACT_DEVELOPER_TOOLS)
       .then((name) => console.log(`Added Extension:  ${name}`))
       .catch((err) => console.log("An error occurred: ", err));
-  } catch(err) {}
+  } catch(err) {
+    "do nothing";
+  }
 }
 
 /* eslint-enable no-console */

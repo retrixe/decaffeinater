@@ -14,6 +14,12 @@ var _reactDom = require("react-dom");
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _materialUi = require("material-ui");
+
+var _reactTapEventPlugin = require("react-tap-event-plugin");
+
+var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -22,17 +28,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // polyfill to use async/await.
+// ipc communication to main process.
+// material design based ui framework.
 
+// Needed for onTouchTap in material-ui http://stackoverflow.com/a/34015469/988941
+
+
+// Sends ipc message to main process to kill app when called.
 function killProcess(pid) {
   _electron.ipcRenderer.send("iCanKill?", pid);
 }
 
+// sleep function to wait for some time.
 function sleep(s) {
   return new Promise(function (resolve) {
     return setTimeout(resolve, s * 1000);
   });
 }
+
+// Our main React component (and only one)
 
 var Index = function (_React$Component) {
   _inherits(Index, _React$Component);
@@ -40,6 +55,7 @@ var Index = function (_React$Component) {
   function Index(props) {
     _classCallCheck(this, Index);
 
+    // Set up initial configuration for state.
     var _this = _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).call(this, props));
 
     _this.state = {
@@ -48,9 +64,13 @@ var Index = function (_React$Component) {
       countdown: 0
     };
 
+    // Bind functions here.
     _this.onStart = _this.onStart.bind(_this);
     return _this;
   }
+
+  // click handler to start the countdown till process terminates.
+
 
   _createClass(Index, [{
     key: "onStart",
@@ -61,9 +81,14 @@ var Index = function (_React$Component) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                // initial variables here.
                 i = 0;
+                // following 2 lines prevents user from tampering state during countdown. 
+
                 time = this.state.time * 60;
                 process = JSON.parse(JSON.stringify(this.state)).process;
+                // wait 1 second, then add 1 to this.state.countdown for (time) times.
+
                 i = 0;
 
               case 4:
@@ -84,8 +109,8 @@ var Index = function (_React$Component) {
                 break;
 
               case 11:
-                killProcess(process);
-                this.setState({ countdown: 0 });
+                killProcess(process); // send ipc message to main proc to kill process.
+                this.setState({ countdown: 0 }); // reset countdown :D
 
               case 13:
               case "end":
@@ -101,68 +126,51 @@ var Index = function (_React$Component) {
 
       return onStart;
     }()
+
+    // This function is big, but it's 90% styling, nothing of interest here.
+
   }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
       return _react2.default.createElement(
-        "div",
+        _materialUi.MuiThemeProvider,
         null,
         _react2.default.createElement(
           "div",
-          { className: "input-group" },
-          _react2.default.createElement(
-            "span",
-            {
-              className: "input-group-addon",
-              id: "sizing-addon1 basic-addon1" },
-            "Minutes"
-          ),
-          _react2.default.createElement("input", {
-            className: "form-control",
-            type: "number",
-            placeholder: "Insert amount of time to play.",
+          null,
+          _react2.default.createElement(_materialUi.TextField, {
+            floatingLabelText: "Time (in minutes)",
+            type: "number", fullWidth: true,
+            hintText: "Insert amount of time to play.",
             value: this.state.time,
-            onInput: function onInput(e) {
+            onChange: function onChange(e) {
               return _this2.setState({ time: e.target.value });
-            } })
-        ),
-        _react2.default.createElement(
-          "div",
-          { className: "input-group" },
-          _react2.default.createElement(
-            "span",
-            {
-              className: "input-group-addon",
-              id: "sizing-addon1 basic-addon1" },
-            "Process"
-          ),
-          _react2.default.createElement("input", {
-            className: "form-control",
-            type: "text",
-            placeholder: "Insert the process name of the app.",
+            } }),
+          _react2.default.createElement("br", null),
+          _react2.default.createElement(_materialUi.TextField, {
+            floatingLabelText: "Process name",
+            type: "text", fullWidth: true,
+            hintText: "Insert the process name of the app.",
             value: this.state.process,
-            onInput: function onInput(event) {
+            onChange: function onChange(event) {
               return _this2.setState({ process: event.target.value });
-            } })
-        ),
-        _react2.default.createElement(
-          "button",
-          { className: "btn btn-primary",
-            onClick: this.onStart },
-          "Click to start."
-        ),
-        _react2.default.createElement(
-          "div",
-          { className: "text-xs-center", id: "countdown-statement" },
-          "Time left to finish: ",
-          this.state.time * 60 - this.state.countdown,
-          " seconds left, out of ",
-          this.state.time * 60,
-          " seconds."
-        ),
-        _react2.default.createElement("progress", { className: "progress extend-width", value: this.state.countdown, max: this.state.time * 60, "aria-describedby": "countdown-statement" })
+            } }),
+          _react2.default.createElement("br", null),
+          _react2.default.createElement(_materialUi.RaisedButton, { onTouchTap: this.onStart, label: "Click to start", primary: true, fullWidth: true }),
+          _react2.default.createElement("br", null),
+          _react2.default.createElement(
+            "div",
+            { className: "text-xs-center", id: "countdown-statement" },
+            "Time left to finish: ",
+            this.state.time * 60 - this.state.countdown,
+            " seconds left, out of ",
+            this.state.time * 60,
+            " seconds."
+          ),
+          _react2.default.createElement("progress", { className: "progress", style: { width: "100%" }, value: this.state.countdown, max: this.state.time * 60, "aria-describedby": "countdown-statement" })
+        )
       );
     }
   }]);
@@ -170,5 +178,7 @@ var Index = function (_React$Component) {
   return Index;
 }(_react2.default.Component);
 
+(0, _reactTapEventPlugin2.default)();
+// Render final app to the screen :D
 _reactDom2.default.render(_react2.default.createElement(Index, null), document.getElementById("app"));
 //# sourceMappingURL=index.js.map
