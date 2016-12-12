@@ -1,7 +1,6 @@
 {
   "globalDependencies": {
     "electron/github-electron": "registry:dt/electron/github-electron#1.4.4+20161022024109",
-    "material-ui": "registry:dt/material-ui#0.16.0+20161208205544",
     "react": "registry:dt/react#0.14.0+20161203201537",
     "react-dom": "registry:dt/react-dom#0.14.0+20160412154040"
   }

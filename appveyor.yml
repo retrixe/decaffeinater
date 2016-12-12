@@ -22,6 +22,7 @@ install:
 
 build_script:
   - yarn dist -- --win
+  - cd dist\ && rename decaffeinater.Setup.1.2.0.exe decaffeinater-1.2.0-setup.exe && cd ..
 
 deploy:
   release: v1.2.0
@@ -29,7 +30,7 @@ deploy:
   provider: GitHub
   auth_token:
     secure: T8t62rU22Km1wugss8JUpuVCKID9uSgZjPFPTwITnyIxPIKuyHKI80Uvimj6RNrk
-  artifact: /.*\.exe/
+  artifact: dist\decaffeinater-1.2.0-setup.exe
   draft: true
   prerelease: false
   #on:
