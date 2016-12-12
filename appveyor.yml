@@ -32,7 +32,7 @@ deploy:
   artifact: /.*\.exe/
   draft: true
   prerelease: false
-  on:
-    appveyor_repo_tag: true
+  #on:
+  #  appveyor_repo_tag: true
 
 test: off
