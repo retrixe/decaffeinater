@@ -27,13 +27,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // polyfill to use async/await.
 // ipc communication to main process.
 
-// Following imports for semantic ui, awsm CSS framework :D
+// Following imports for semantic-ui, awsm CSS framework :D
 
-
-// Sends ipc message to main process to kill app when called.
-function killProcess(pid) {
-  _electron.ipcRenderer.send("iCanKill?", pid);
-}
 
 // sleep function to wait for some time.
 function sleep(s) {
@@ -56,7 +51,8 @@ var Index = function (_React$Component) {
     _this.state = {
       time: 0,
       process: "",
-      countdown: 0
+      countdown: 0,
+      hours: 0
     };
 
     // Bind functions here.
@@ -80,7 +76,7 @@ var Index = function (_React$Component) {
                 i = 0;
                 // following 2 lines prevents user from tampering state during countdown. 
 
-                time = this.state.time * 60;
+                time = this.state.time * 60 + time.state.hours * 3600;
                 process = JSON.parse(JSON.stringify(this.state)).process;
                 // wait 1 second, then add 1 to this.state.countdown for (time) times.
 
@@ -104,7 +100,7 @@ var Index = function (_React$Component) {
                 break;
 
               case 11:
-                killProcess(process); // send ipc message to main proc to kill process.
+                _electron.ipcRenderer.send("iCanKill?", process); // send ipc message to main proc to kill process.
                 this.setState({ countdown: 0 }); // reset countdown :D
 
               case 13:
@@ -130,14 +126,21 @@ var Index = function (_React$Component) {
       var _this2 = this;
 
       return _react2.default.createElement(
-        "div",
-        null,
+        _semanticUiReact.Segment,
+        { style: { margin: "12px" }, raised: true },
+        _react2.default.createElement(_semanticUiReact.Input, {
+          label: "Time (in hours)",
+          type: "number", fluid: true,
+          placeholder: "Insert amount of time to play in hours.",
+          onChange: function onChange(e) {
+            return _this2.setState({ hours: e.target.value });
+          } }),
         _react2.default.createElement(_semanticUiReact.Input, {
           label: "Time (in minutes)",
           type: "number", fluid: true,
-          placeholder: "Insert amount of time to play.",
-          onChange: function onChange(e) {
-            return _this2.setState({ time: e.target.value });
+          placeholder: "Insert amount of time to play in minutes.",
+          onChange: function onChange(event) {
+            return _this2.setState({ time: event.target.value });
           } }),
         _react2.default.createElement(_semanticUiReact.Input, {
           label: "Process",
@@ -149,17 +152,17 @@ var Index = function (_React$Component) {
         _react2.default.createElement("br", null),
         _react2.default.createElement(_semanticUiReact.Button, { onClick: this.onStart, content: "Click to start", inverted: true, fluid: true, color: "green" }),
         _react2.default.createElement("br", null),
+        _react2.default.createElement("div", null),
         _react2.default.createElement(
-          "div",
-          null,
+          _semanticUiReact.Progress,
+          { value: this.state.countdown, total: this.state.time * 60 + this.state.hours * 3600, indicating: true, autoSuccess: true,
+            color: "teal" },
           "Time left to finish: ",
-          this.state.time * 60 - this.state.countdown,
+          this.state.time * 60 + this.state.hours * 3600 - this.state.countdown,
           " seconds left, out of ",
           this.state.time * 60,
           " seconds."
-        ),
-        _react2.default.createElement(_semanticUiReact.Progress, { value: this.state.countdown, indicating: true, total: this.state.time * 60 }),
-        ">"
+        )
       );
     }
   }]);

@@ -2,13 +2,8 @@ import "babel-polyfill";                     // polyfill to use async/await.
 import {ipcRenderer} from "electron";        // ipc communication to main process.
 import React from "react";
 import ReactDOM from "react-dom";
-// Following imports for semantic ui, awsm CSS framework :D
-import {Button, Input, Progress} from "semantic-ui-react";
-
-// Sends ipc message to main process to kill app when called.
-function killProcess(pid) {
-  ipcRenderer.send("iCanKill?", pid);
-}
+// Following imports for semantic-ui, awsm CSS framework :D
+import {Button, Input, Progress, Segment} from "semantic-ui-react";
 
 // sleep function to wait for some time.
 function sleep(s) {
@@ -24,7 +19,8 @@ class Index extends React.Component {
     this.state = {
       time: 0,
       process: "",
-      countdown: 0
+      countdown: 0,
+      hours: 0
     };
 
     // Bind functions here.
@@ -36,26 +32,31 @@ class Index extends React.Component {
     // initial variables here.
     let i = 0;
     // following 2 lines prevents user from tampering state during countdown. 
-    let time = this.state.time*60;
+    let time = this.state.time*60 + time.state.hours*3600;
     let process = JSON.parse(JSON.stringify(this.state)).process;
     // wait 1 second, then add 1 to this.state.countdown for (time) times.
     for (i = 0; i < this.state.time*60; i++) {
       await sleep(1);
       this.setState({countdown: this.state.countdown+1});
     }
-    killProcess(process);                 // send ipc message to main proc to kill process.
-    this.setState({countdown: 0});        // reset countdown :D
+    ipcRenderer.send("iCanKill?", process);     // send ipc message to main proc to kill process.
+    this.setState({countdown: 0});          // reset countdown :D
   }
 
   // This function is big, but it's 90% styling, nothing of interest here.
   render() {
     return (
-      <div>
+      <Segment style={{margin: "12px"}} raised>
+        <Input
+          label="Time (in hours)"
+          type="number" fluid
+          placeholder="Insert amount of time to play in hours."
+          onChange={(e) => this.setState({hours: e.target.value})} />
         <Input
           label="Time (in minutes)"
           type="number" fluid
-          placeholder="Insert amount of time to play."
-          onChange={(e) => this.setState({time: e.target.value})} />
+          placeholder="Insert amount of time to play in minutes."
+          onChange={(event) => this.setState({time: event.target.value})} />
         <Input
           label="Process"
           type="text" fluid
@@ -64,9 +65,10 @@ class Index extends React.Component {
         <br />
         <Button onClick={this.onStart} content="Click to start" inverted fluid color="green" />
         <br />
-        <div>Time left to finish: {this.state.time*60-this.state.countdown} seconds left, out of {this.state.time*60} seconds.</div>
-        <Progress value={this.state.countdown} indicating total={this.state.time*60} />>
-      </div>
+        <div></div>
+        <Progress value={this.state.countdown} total={this.state.time*60+this.state.hours*3600} indicating autoSuccess
+         color="teal">Time left to finish: {(this.state.time*60+this.state.hours*3600)-this.state.countdown} seconds left, out of {this.state.time*60} seconds.</Progress>
+      </Segment>
     );
   }
 }
