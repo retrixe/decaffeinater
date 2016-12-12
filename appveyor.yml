@@ -22,7 +22,8 @@ install:
 
 build_script:
   - yarn dist -- --win
-  - cd dist\ && rename decaffeinater.Setup.1.2.0.exe decaffeinater-1.2.0-setup.exe && cd ..
+  - cd dist\ && dir
+#  - cd dist\ && rename decaffeinater.Setup.1.2.0.exe decaffeinater-1.2.0-setup.exe && cd ..
 
 deploy:
   release: v1.2.0
