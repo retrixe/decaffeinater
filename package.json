@@ -11,8 +11,8 @@
     "semantic-ui-react": "^0.62.1"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "watch": "webpack --config webpack.config.js",
+    "build": "webpack --progress",
+    "watch": "webpack -w --progress",
     "start": "npm run build && electron .",
     "pack": "npm run build && build --dir",
     "dist": "npm run build && build"
@@ -23,11 +23,14 @@
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.26.1",
     "electron": "^1.4.12",
     "electron-builder": "^10.6.1",
     "electron-devtools-installer": "^2.0.1",
     "eslint": "^3.12.0",
     "eslint-plugin-react": "^6.8.0",
+    "json-loader": "^0.5.4",
+    "style-loader": "^0.13.1",
     "webpack": "^1.14.0"
   },
   "build": {
