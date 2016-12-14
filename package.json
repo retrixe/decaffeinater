@@ -11,25 +11,24 @@
     "semantic-ui-react": "^0.62.1"
   },
   "scripts": {
-    "build": "gulp default",
-    "watch": "gulp watch",
+    "build": "webpack --config webpack.config.js",
+    "watch": "webpack --config webpack.config.js",
     "start": "npm run build && electron .",
     "pack": "npm run build && build --dir",
     "dist": "npm run build && build"
   },
   "devDependencies": {
+    "babel-core": "^6.20.0",
+    "babel-loader": "^6.2.9",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
+    "copy-webpack-plugin": "^4.0.1",
     "electron": "^1.4.12",
     "electron-builder": "^10.6.1",
     "electron-devtools-installer": "^2.0.1",
     "eslint": "^3.12.0",
     "eslint-plugin-react": "^6.8.0",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2",
-    "gulp-cli": "^1.2.2",
-    "gulp-sass": "^3.0.0",
-    "gulp-sourcemaps": "^2.2.0"
+    "webpack": "^1.14.0"
   },
   "build": {
     "appId": "com.decaffeinater",
