@@ -1,4 +1,5 @@
 var CopyWebpackPlugin = require("copy-webpack-plugin");
+var json = require("json-loader");
 
 const config = {
   target: "electron",
@@ -11,6 +12,7 @@ const config = {
     path: __dirname + "/app",
     sourceMapFilename: "[file].map"
   },
+  devtool: "source-map",
   node: {
     __dirname: false,
     __filename: false
@@ -21,6 +23,10 @@ const config = {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.json$/,
+        loader: "json-loader"
       }
     ]
   },
