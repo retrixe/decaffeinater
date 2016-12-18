@@ -32,7 +32,7 @@ class Index extends React.Component {
     // initial variables here.
     let i = 0;
     // following 2 lines prevents user from tampering state during countdown. 
-    let time = this.state.time*60 + time.state.hours*3600;
+    let time = this.state.time*60 + this.state.hours*3600;
     let process = JSON.parse(JSON.stringify(this.state)).process;
     // wait 1 second, then add 1 to this.state.countdown for (time) times.
     for (i = 0; i < this.state.time*60; i++) {

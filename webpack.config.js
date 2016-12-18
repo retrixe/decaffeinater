@@ -1,5 +1,5 @@
+/* eslint-env node */
 var CopyWebpackPlugin = require("copy-webpack-plugin");
-var json = require("json-loader");
 
 const config = {
   target: "electron",
@@ -21,7 +21,7 @@ const config = {
     loaders: [
       {
         test: /\.(js|jsx)$/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
         exclude: /node_modules/
       },
       {
@@ -31,13 +31,11 @@ const config = {
     ]
   },
   plugins: [
-    new CopyWebpackPlugin([
-      { from: "src/index.html", to: "index.html"}
-    ],
-    {
-      copyUnmodified: true
-    })
+    new CopyWebpackPlugin(
+      [{ from: "src/index.html", to: "index.html"}],
+      { copyUnmodified: true }
+    )
   ]
-}
+};
 
 module.exports = config;
