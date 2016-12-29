@@ -3,8 +3,5 @@
   "description": "An app which closes apps if you use them too much.",
   "author": "Ibrahim Ansari <ansari.ibrahim1@gmail.com>",
   "version": "1.2.0",
-  "main": "main.js",
-  "dependencies": {
-    "semantic-ui-css": "^2.2.4"
-  }
+  "main": "main.js"
 }

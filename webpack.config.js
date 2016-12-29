@@ -30,6 +30,10 @@ const config = {
     new CopyWebpackPlugin(
       [{ from: "src/index.html", to: "index.html"}],
       { copyUnmodified: true }
+    ),
+    new CopyWebpackPlugin(
+      [{ from: "node_modules/semantic-ui-css", to: "semantic-ui-css"}],
+      { copyUnmodified: true }
     )
   ]
 };
