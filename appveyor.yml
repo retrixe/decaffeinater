@@ -33,7 +33,7 @@ deploy:
   artifact: dist\decaffeinater-1.2.0-setup.exe
   draft: true
   prerelease: false
-  #on:
-  #  appveyor_repo_tag: true
+  on:
+    appveyor_repo_tag: true
 
 test: off

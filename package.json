@@ -5,31 +5,32 @@
   "main": "app/main.js",
   "dependencies": {
     "babel-polyfill": "^6.20.0",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
     "semantic-ui-css": "^2.2.4",
-    "semantic-ui-react": "^0.62.1"
+    "semantic-ui-react": "^0.62.2"
   },
   "scripts": {
-    "build": "gulp default",
-    "watch": "gulp watch",
-    "start": "npm run build && electron .",
-    "pack": "npm run build && build --dir",
-    "dist": "npm run build && build"
+    "build": "webpack --progress",
+    "watch": "webpack -w --progress",
+    "no-build": "electron .",
+    "start": "webpack --progress && electron .",
+    "pack": "webpack --progress && build --dir",
+    "dist": "webpack --progress && build"
   },
   "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
+    "copy-webpack-plugin": "^4.0.1",
     "electron": "^1.4.12",
-    "electron-builder": "^10.6.1",
+    "electron-builder": "^10.8.1",
     "electron-devtools-installer": "^2.0.1",
-    "eslint": "^3.12.0",
+    "eslint": "^3.12.2",
     "eslint-plugin-react": "^6.8.0",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2",
-    "gulp-cli": "^1.2.2",
-    "gulp-sass": "^3.0.0",
-    "gulp-sourcemaps": "^2.2.0"
+    "json-loader": "^0.5.4",
+    "webpack": "2.2.0-rc.1"
   },
   "build": {
     "appId": "com.decaffeinater",
