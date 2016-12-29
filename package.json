@@ -8,7 +8,7 @@
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "semantic-ui-css": "^2.2.4",
-    "semantic-ui-react": "^0.62.2"
+    "semantic-ui-react": "^0.63.2"
   },
   "scripts": {
     "build": "webpack --progress",
@@ -24,13 +24,12 @@
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "copy-webpack-plugin": "^4.0.1",
-    "electron": "^1.4.12",
-    "electron-builder": "^10.8.1",
+    "electron": "^1.4.13",
+    "electron-builder": "^10.15.1",
     "electron-devtools-installer": "^2.0.1",
     "eslint": "^3.12.2",
     "eslint-plugin-react": "^6.8.0",
-    "json-loader": "^0.5.4",
-    "webpack": "2.2.0-rc.1"
+    "webpack": "2.2.0-rc.2"
   },
   "build": {
     "appId": "com.decaffeinater",
