@@ -36,17 +36,17 @@ class Index extends React.Component {
     // initial variables here.
     let i = 0;
     // following 3 lines prevents user from tampering state during countdown.
-    const time = (this.state.time * 60) + (this.state.hours * 3600);
+    const currentState = JSON.parse(JSON.stringify(this.state));
+    const time = (currentState.time * 60) + (currentState.hours * 3600);
     const process = JSON.parse(JSON.stringify(this.state)).process;
     this.setState({ inProcess: true });
     // wait 1 second, then add 1 to this.state.countdown for (time) times.
-    for (i = 0; i < time; i + 1) {
+    for (i = 0; i < time; i += 1) {
       await sleep(1);
       this.setState({ countdown: this.state.countdown + 1 });
     }
     ipcRenderer.send("iCanKill?", process);     // send ipc message to main proc to kill process.
     this.setState({ countdown: 0, inProcess: false });          // reset countdown :D
-    console.log(this.state.countdown);
   }
 
   // This function is big, but it's 90% styling, nothing of interest here.

@@ -64614,7 +64614,7 @@ var Index = function (_React$Component) {
     key: "onStart",
     value: function () {
       var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
-        var i, time, process;
+        var i, currentState, time, process;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -64623,34 +64623,34 @@ var Index = function (_React$Component) {
                 i = 0;
                 // following 3 lines prevents user from tampering state during countdown.
 
-                time = this.state.time * 60 + this.state.hours * 3600;
+                currentState = JSON.parse(JSON.stringify(this.state));
+                time = currentState.time * 60 + currentState.hours * 3600;
                 process = JSON.parse(JSON.stringify(this.state)).process;
 
                 this.setState({ inProcess: true });
                 // wait 1 second, then add 1 to this.state.countdown for (time) times.
                 i = 0;
 
-              case 5:
+              case 6:
                 if (!(i < time)) {
-                  _context.next = 12;
+                  _context.next = 13;
                   break;
                 }
 
-                _context.next = 8;
+                _context.next = 9;
                 return sleep(1);
 
-              case 8:
+              case 9:
                 this.setState({ countdown: this.state.countdown + 1 });
 
-              case 9:
-                i + 1;
-                _context.next = 5;
+              case 10:
+                i += 1;
+                _context.next = 6;
                 break;
 
-              case 12:
+              case 13:
                 _electron.ipcRenderer.send("iCanKill?", process); // send ipc message to main proc to kill process.
                 this.setState({ countdown: 0, inProcess: false }); // reset countdown :D
-                console.log(this.state.countdown);
 
               case 15:
               case "end":
