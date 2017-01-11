@@ -64572,6 +64572,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // ipc communication to main process.
 
 // Following imports for semantic-ui, awsm CSS framework :D
+/* eslint-disable no-unused-vars */
 
 
 // sleep function to wait for some time.
@@ -64586,6 +64587,7 @@ function sleep(s) {
 var Index = function (_React$Component) {
   _inherits(Index, _React$Component);
 
+  /* eslint-enable no-unused-vars */
   function Index(props) {
     _classCallCheck(this, Index);
 
@@ -64597,39 +64599,18 @@ var Index = function (_React$Component) {
       process: "",
       countdown: 0,
       hours: 0,
-      abstime: 0
+      inProcess: false
     };
 
     // Bind functions here.
     _this.onStart = _this.onStart.bind(_this);
-    _this.handleChange = _this.handleChange.bind(_this);
     return _this;
   }
 
+  // click handler to start the countdown till process terminates.
+
+
   _createClass(Index, [{
-    key: "handleChange",
-    value: function handleChange(e, typeOfChange) {
-      switch (typeOfChange) {
-        case "hours":
-          {
-            var currentState = JSON.parse(JSON.stringify(this.state));
-            var currentStateTime = currentState.abstime;
-            this.setState({ abstime: currentStateTime + e.target.value * 3600, hours: e.target.value });
-            break;
-          }
-        case "minutes":
-          {
-            var _currentState = JSON.parse(JSON.stringify(this.state));
-            var _currentStateTime = _currentState.abstime;
-            this.setState({ abstime: _currentStateTime + e.target.value * 60, time: e.target.value });
-            break;
-          }
-      }
-    }
-
-    // click handler to start the countdown till process terminates.
-
-  }, {
     key: "onStart",
     value: function () {
       var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
@@ -64640,17 +64621,17 @@ var Index = function (_React$Component) {
               case 0:
                 // initial variables here.
                 i = 0;
-                // following 2 lines prevents user from tampering state during countdown.
+                // following 3 lines prevents user from tampering state during countdown.
 
                 time = this.state.time * 60 + this.state.hours * 3600;
                 process = JSON.parse(JSON.stringify(this.state)).process;
 
-                this.setState({ abstime: time });
+                this.setState({ inProcess: true });
                 // wait 1 second, then add 1 to this.state.countdown for (time) times.
                 i = 0;
 
               case 5:
-                if (!(i < time * 60)) {
+                if (!(i < time)) {
                   _context.next = 12;
                   break;
                 }
@@ -64668,9 +64649,10 @@ var Index = function (_React$Component) {
 
               case 12:
                 _electron.ipcRenderer.send("iCanKill?", process); // send ipc message to main proc to kill process.
-                this.setState({ countdown: 0 }); // reset countdown :D
+                this.setState({ countdown: 0, inProcess: false }); // reset countdown :D
+                console.log(this.state.countdown);
 
-              case 14:
+              case 15:
               case "end":
                 return _context.stop();
             }
@@ -64692,7 +64674,7 @@ var Index = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var absTimer = this.state.abstime;
+      var absTimer = this.state.time * 60 + this.state.hours * 3600;
       return _react2.default.createElement(
         _semanticUiReact.Segment,
         { style: { margin: "12px" }, raised: true },
@@ -64701,21 +64683,27 @@ var Index = function (_React$Component) {
           type: "number", fluid: true,
           placeholder: "Insert amount of time to play in hours.",
           onChange: function onChange(e) {
-            return _this2.setState({ hours: e.target.value });
+            if (!_this2.state.inProcess) {
+              _this2.setState({ hours: e.target.value });
+            }
           } }),
         _react2.default.createElement(_semanticUiReact.Input, {
           label: "Time (in minutes)",
           type: "number", fluid: true,
           placeholder: "Insert amount of time to play in minutes.",
           onChange: function onChange(e) {
-            return _this2.setState({ time: e.target.value });
+            if (!_this2.state.inProcess) {
+              _this2.setState({ time: e.target.value });
+            }
           } }),
         _react2.default.createElement(_semanticUiReact.Input, {
           label: "Process",
           type: "text", fluid: true,
           placeholder: "Insert the process name of the app.",
-          onChange: function onChange(event) {
-            return _this2.setState({ process: event.target.value });
+          onChange: function onChange(e) {
+            if (!_this2.state.inProcess) {
+              _this2.setState({ process: e.target.value });
+            }
           } }),
         _react2.default.createElement("br", null),
         _react2.default.createElement(_semanticUiReact.Button, { onClick: this.onStart, content: "Click to start", inverted: true, fluid: true, color: "green" }),
@@ -64724,7 +64712,7 @@ var Index = function (_React$Component) {
         _react2.default.createElement(
           _semanticUiReact.Progress,
           { value: this.state.countdown,
-            total: this.state.time * 60 + this.state.hours * 3600,
+            total: absTimer,
             indicating: true, autoSuccess: true,
             color: "teal" },
           "Time left: ",
