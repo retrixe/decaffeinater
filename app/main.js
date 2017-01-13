@@ -85,10 +85,6 @@ var _electron = __webpack_require__(114);
 
 var _killProc = __webpack_require__(476);
 
-var _killProc2 = _interopRequireDefault(_killProc);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 /* eslint-env node */
@@ -135,7 +131,7 @@ _electron.app.on("activate", function () {
 
 // In this file you can include the rest of your app's specific main process
 _electron.ipcMain.on("iCanKill?", function (event, arg) {
-  (0, _killProc2.default)(arg, process.platform);
+  (0, _killProc.killProcess)(arg, process.platform);
 });
 
 /***/ },
@@ -153,38 +149,34 @@ module.exports = require("electron");
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.killProcUnix = killProcUnix;
-exports.killProcWin = killProcWin;
-exports.default = killProcess;
 var exec = __webpack_require__(1008).exec; // needed to run cmd commands.
 /* eslint-disable no-console */
 /* eslint-disable no-else-return */
 
 // Kill processes in Unix.
 function killProcUnix(pid) {
-  exec("killall -9 " + pid, function (error, stdout, stderr) {
+  var handler = function handler(error) {
     if (error) {
       console.error("Failure to execute: " + error);
       return error;
     } else {
-      return { error: error, stdout: stdout, stderr: stderr };
+      return true;
     }
-  });
+  };
+  exec("killall -9 " + pid, handler());
 }
 
 // Kill processes in Windows.
 function killProcWin(pid) {
-  exec("taskkill /IM " + pid + " /F", function (error, stdout, stderr) {
+  var handler = function handler(error) {
     if (error) {
       console.error("Failure to execute: " + error);
-      return { error: error };
+      return error;
     } else {
-      return { error: error, stdout: stdout, stderr: stderr };
+      return true;
     }
-  });
+  };
+  exec("taskkill /IM " + pid + " /F", handler());
 }
 
 // Takes any parameter, detects the current platform
@@ -196,6 +188,11 @@ function killProcess(proc, platform) {
     killProcWin(proc);
   }
 }
+
+// Legacy ES5 code to make NodeJS work and use Mocha tests..
+exports.killProcUnix = killProcUnix;
+exports.killProcWin = killProcWin;
+exports.killProcess = killProcess;
 
 /***/ }
 

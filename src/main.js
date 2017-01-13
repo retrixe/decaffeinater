@@ -1,7 +1,7 @@
 /* eslint-env node */
 /* eslint-disable import/no-extraneous-dependencies */
 import { app, BrowserWindow, ipcMain } from "electron";
-import killProcess from "./killProc";
+import { killProcess } from "./killProc";
 
 
 // Keep a global reference of the window object, if you don't, the window will

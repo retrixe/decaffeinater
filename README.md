@@ -58,3 +58,5 @@ Finally, open a terminal window in the folder where the app is located and execu
 - [ ] Node.js v6/v7
 - [ ] Yarn package manage instead of npm
 - [ ] React development tools on Electron ([refer here](https://github.com/electron/electron/blob/master/docs/tutorial/devtools-extension.md))
+
+On a side note for devs: Use ES2015/ES2016/ES2017 in main.js and index.js ONLY. Other files must be in ES5.
