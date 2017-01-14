@@ -1,26 +1,23 @@
+/* @flow */
 /* eslint-env node */
+/* eslint-disable no-console, no-else-return */
 const exec = require("child_process").exec;      // needed to run cmd commands.
-/* eslint-disable no-console */
-/* eslint-disable no-else-return */
 
-const resultant = { worked: false, error: false };
+// Creating a union type for processes.
+type process = number | string;
 
 // Monkey-patch function for result.
+let worked = false;
 function resultSuccess() {
-  resultant.worked = true;
-}
-
-function addErrorToResultant(input) {
-  resultant.error = input;
+  worked = true;
 }
 
 // Kill processes in Unix.
-function killProcUnix(pid) {
-  exec(`killall -9 ${pid}`, (error, stdout, /* eslint-disable no-unused-vars */ stderr) => {
-    /* eslint-enable no-unused-vars */
+function killProcUnix(pid: process) {
+  // eslint-disable-next-line no-unused-vars
+  exec(`killall -9 ${pid}`, (error, stdout, stderr) => {
     if (error) {
       console.error(`Failure to execute: ${error}`);
-      addErrorToResultant(error);
     } else {
       resultSuccess();
     }
@@ -28,12 +25,11 @@ function killProcUnix(pid) {
 }
 
 // Kill processes in Windows.
-function killProcWin(pid) {
-  exec(`taskkill /IM ${pid} /F`, (error, stdout, /* eslint-disable no-unused-vars */ stderr) => {
-    /* eslint-enable no-unused-vars */
+function killProcWin(pid: process) {
+  // eslint-disable-next-line no-unused-vars
+  exec(`taskkill /IM ${pid} /F`, (error, stdout, stderr) => {
     if (error) {
       console.error(`Failure to execute: ${error}`);
-      addErrorToResultant(error);
     } else {
       resultSuccess();
     }
@@ -42,13 +38,15 @@ function killProcWin(pid) {
 
 // Takes any parameter, detects the current platform
 // and then executes correct func to kill proc.
-function killProcess(proc, platform) {
+function killProcess(proc: process, platform: string) {
   if (platform !== "win32") {
     killProcUnix(proc);
-    return resultant.worked;
-  } else {
+    return worked;
+  } else if (platform === "win32") {
     killProcWin(proc);
-    return resultant.worked;
+    return worked;
+  } else {
+    return false;
   }
 }
 

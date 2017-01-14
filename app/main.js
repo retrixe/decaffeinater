@@ -149,34 +149,46 @@ module.exports = require("electron");
 "use strict";
 
 
+/* eslint-env node */
 var exec = __webpack_require__(1008).exec; // needed to run cmd commands.
 /* eslint-disable no-console */
 /* eslint-disable no-else-return */
 
+var resultant = { worked: false, error: false };
+
+// Monkey-patch function for result.
+function resultSuccess() {
+  resultant.worked = true;
+}
+
+function addErrorToResultant(input) {
+  resultant.error = input;
+}
+
 // Kill processes in Unix.
 function killProcUnix(pid) {
-  var handler = function handler(error) {
+  exec("killall -9 " + pid, function (error, stdout, /* eslint-disable no-unused-vars */stderr) {
+    /* eslint-enable no-unused-vars */
     if (error) {
       console.error("Failure to execute: " + error);
-      return error;
+      addErrorToResultant(error);
     } else {
-      return true;
+      resultSuccess();
     }
-  };
-  exec("killall -9 " + pid, handler());
+  });
 }
 
 // Kill processes in Windows.
 function killProcWin(pid) {
-  var handler = function handler(error) {
+  exec("taskkill /IM " + pid + " /F", function (error, stdout, /* eslint-disable no-unused-vars */stderr) {
+    /* eslint-enable no-unused-vars */
     if (error) {
       console.error("Failure to execute: " + error);
-      return error;
+      addErrorToResultant(error);
     } else {
-      return true;
+      resultSuccess();
     }
-  };
-  exec("taskkill /IM " + pid + " /F", handler());
+  });
 }
 
 // Takes any parameter, detects the current platform
@@ -184,8 +196,10 @@ function killProcWin(pid) {
 function killProcess(proc, platform) {
   if (platform !== "win32") {
     killProcUnix(proc);
+    return resultant.worked;
   } else {
     killProcWin(proc);
+    return resultant.worked;
   }
 }
 

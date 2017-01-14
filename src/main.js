@@ -1,3 +1,4 @@
+/* @flow */
 /* eslint-env node */
 /* eslint-disable import/no-extraneous-dependencies */
 import { app, BrowserWindow, ipcMain } from "electron";

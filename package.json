@@ -5,10 +5,10 @@
   "main": "app/main.js",
   "dependencies": {
     "babel-polyfill": "^6.20.0",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1",
-    "semantic-ui-css": "^2.2.4",
-    "semantic-ui-react": "0.63.3"
+    "node-cmd": "^1.2.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "semantic-ui-react": "^0.64.0"
   },
   "scripts": {
     "build": "webpack --progress",
@@ -20,20 +20,23 @@
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
+    "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "chai": "^3.5.0",
     "copy-webpack-plugin": "^4.0.1",
     "devtron": "^1.4.0",
-    "electron": "^1.4.13",
-    "electron-builder": "^10.15.1",
+    "electron": "^1.4.14",
+    "electron-builder": "^11.2.4",
     "electron-winstaller": "^2.5.1",
-    "eslint": "^3.12.2",
-    "eslint-config-airbnb": "^13.0.0",
+    "eslint": "^3.13.1",
+    "eslint-config-airbnb": "^14.0.0",
+    "eslint-plugin-flowtype": "^2.29.2",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",
-    "eslint-plugin-react": "^6.8.0",
+    "eslint-plugin-react": "^6.9.0",
+    "flow-bin": "^0.37.4",
     "mocha": "^3.2.0",
     "webpack": "2.2.0-rc.3"
   },

@@ -4,7 +4,7 @@ import { ipcRenderer } from "electron";        // ipc communication to main proc
 import React from "react";
 import ReactDOM from "react-dom";
 // Following imports for semantic-ui, awsm CSS framework :D
-/* eslint-disable no-unused-vars */
+// eslint-disable-next-line no-unused-vars
 import { Button, Input, Progress, Segment } from "semantic-ui-react";
 
 // sleep function to wait for some time.
@@ -13,8 +13,8 @@ function sleep(s) {
 }
 
 // Our main React component (and only one)
+// eslint-disable-next-line no-unused-vars
 class Index extends React.Component {
-  /* eslint-enable no-unused-vars */
   constructor(props) {
     super(props);
 

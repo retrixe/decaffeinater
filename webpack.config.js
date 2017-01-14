@@ -1,4 +1,4 @@
-/* eslint-disable */
+// eslint-disable-next-line import/no-extraneous-dependencies
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const config = {
@@ -29,11 +29,7 @@ const config = {
   plugins: [
     new CopyWebpackPlugin(
       [{ from: "src/index.html", to: "index.html" }],
-      { copyUnmodified: true }
-    ),
-    new CopyWebpackPlugin(
-      [{ from: "node_modules/semantic-ui-css/semantic.min.css", to: "semantic.min.css" }],
-      { copyUnmodified: true }
+      { copyUnmodified: true },
     ),
   ],
 };

@@ -1,10 +1,11 @@
-{
+module.exports = {
     "env": {
         "browser": true,
         "commonjs": true,
         "es6": true
     },
-    "extends": "eslint-config-airbnb/base",
+    "extends": "eslint-config-airbnb",
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,
@@ -13,7 +14,8 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "flowtype"
     ],
     "rules": {
         "indent": [
@@ -41,6 +43,9 @@
         ],
         "no-mixed-operators": [
           "off"
+        ],
+        "no-var": [
+            "off"
         ]
     }
 }
