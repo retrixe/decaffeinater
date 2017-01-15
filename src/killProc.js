@@ -40,5 +40,3 @@ export default function killProcess(proc: process, platform: string) {
   }
   return false;
 }
-
-module.exports = killProcess;

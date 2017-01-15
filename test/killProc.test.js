@@ -1,3 +1,8 @@
+/* This Mocha test is purely experimental.
+It does not work as of commit 90341bd and
+fails all flow tests and ESLint returns
+errors. The fix will arrive soon. */
+
 /* @flow */
 /* eslint-env mocha */
 require("babel-register");
