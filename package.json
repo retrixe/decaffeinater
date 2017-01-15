@@ -16,7 +16,7 @@
     "start": "webpack --progress && electron .",
     "nobuild": "electron .",
     "dist": "webpack --progress && build",
-    "test": "mocha"
+    "test": "mocha --compilers js:babel-register"
   },
   "devDependencies": {
     "@types/babel-core": "^6.7.14",

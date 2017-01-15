@@ -1,14 +1,14 @@
+/* @flow */
 /* This Mocha test is purely experimental.
 It does not work as of commit 90341bd and
 fails all flow tests and ESLint returns
-errors. The fix will arrive soon. */
+errors. The fix will arrive soon.
+Just adding, the remaining issue is the
+result var not available to the external block. */
 
-/* @flow */
 /* eslint-env mocha */
-require("babel-register");
-
 // Importing the thing to test.
-const killProcFunc = require("../src/killProc");
+import killProcess from "../src/killProc";
 
 // Importing necessary libraries.
 const process = require("process");
@@ -24,9 +24,9 @@ describe("Killing processes", () => {
   it("should execute without errors", () => {
     // Call killProcess on notepad/gedit
     if (process.platform !== "win32") {
-      const result = killProcFunc("gedit", process.platform);
+      const result = killProcess("gedit", process.platform);
     } else {
-      const result = killProcFunc("notepad.exe", process.platform);
+      const result = killProcess("notepad.exe", process.platform);
     }
     assert.equal(result, true);
   });
