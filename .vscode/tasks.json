@@ -18,6 +18,10 @@
         {
             "taskName": "watch",
             "args": ["run", "watch"]
+        },
+        {
+            "taskName": "test",
+            "args": ["test"]
         }
     ]
 }

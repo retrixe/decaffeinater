@@ -63,30 +63,35 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1014);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1122);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 1008:
+/***/ 1116:
 /***/ function(module, exports) {
 
 module.exports = require("child_process");
 
 /***/ },
 
-/***/ 1014:
+/***/ 1122:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _electron = __webpack_require__(114);
+var _electron = __webpack_require__(136);
 
-var _killProc = __webpack_require__(476);
+var _killProc = __webpack_require__(532);
+
+var _killProc2 = _interopRequireDefault(_killProc);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
+
 /* eslint-env node */
 /* eslint-disable import/no-extraneous-dependencies */
 var win = void 0;
@@ -131,63 +136,60 @@ _electron.app.on("activate", function () {
 
 // In this file you can include the rest of your app's specific main process
 _electron.ipcMain.on("iCanKill?", function (event, arg) {
-  (0, _killProc.killProcess)(arg, process.platform);
+  (0, _killProc2.default)(arg, process.platform);
 });
 
 /***/ },
 
-/***/ 114:
+/***/ 136:
 /***/ function(module, exports) {
 
 module.exports = require("electron");
 
 /***/ },
 
-/***/ 476:
+/***/ 532:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-/* eslint-env node */
-var exec = __webpack_require__(1008).exec; // needed to run cmd commands.
-/* eslint-disable no-console */
-/* eslint-disable no-else-return */
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.killProcUnix = killProcUnix;
+exports.killProcWin = killProcWin;
+exports.default = killProcess;
 
-var resultant = { worked: false, error: false };
-
-// Monkey-patch function for result.
-function resultSuccess() {
-  resultant.worked = true;
-}
-
-function addErrorToResultant(input) {
-  resultant.error = input;
-}
+var _child_process = __webpack_require__(1116);
 
 // Kill processes in Unix.
+// needed to run cmd commands.
+
+// Creating a union type for processes.
 function killProcUnix(pid) {
-  exec("killall -9 " + pid, function (error, stdout, /* eslint-disable no-unused-vars */stderr) {
-    /* eslint-enable no-unused-vars */
+  // eslint-disable-next-line no-unused-vars
+  (0, _child_process.exec)("killall -9 " + pid, function (error, stdout, stderr) {
     if (error) {
       console.error("Failure to execute: " + error);
-      addErrorToResultant(error);
-    } else {
-      resultSuccess();
+      return false;
     }
+    return true;
   });
 }
 
 // Kill processes in Windows.
+
+/* eslint-env node */
+/* eslint-disable no-console */
 function killProcWin(pid) {
-  exec("taskkill /IM " + pid + " /F", function (error, stdout, /* eslint-disable no-unused-vars */stderr) {
-    /* eslint-enable no-unused-vars */
+  // eslint-disable-next-line no-unused-vars
+  (0, _child_process.exec)("taskkill /IM " + pid + " /F", function (error, stdout, stderr) {
     if (error) {
       console.error("Failure to execute: " + error);
-      addErrorToResultant(error);
-    } else {
-      resultSuccess();
+      return false;
     }
+    return true;
   });
 }
 
@@ -195,18 +197,14 @@ function killProcWin(pid) {
 // and then executes correct func to kill proc.
 function killProcess(proc, platform) {
   if (platform !== "win32") {
-    killProcUnix(proc);
-    return resultant.worked;
-  } else {
-    killProcWin(proc);
-    return resultant.worked;
+    return killProcUnix(proc);
+  } else if (platform === "win32") {
+    return killProcWin(proc);
   }
+  return false;
 }
 
-// Legacy ES5 code to make NodeJS work and use Mocha tests..
-exports.killProcUnix = killProcUnix;
-exports.killProcWin = killProcWin;
-exports.killProcess = killProcess;
+module.exports = killProcess;
 
 /***/ }
 

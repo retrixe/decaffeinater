@@ -1,6 +1,9 @@
+/* @flow */
 /* eslint-env mocha */
+require("babel-register");
+
 // Importing the thing to test.
-const testFile = require("../src/killProc");
+const killProcFunc = require("../src/killProc");
 
 // Importing necessary libraries.
 const process = require("process");
@@ -13,9 +16,13 @@ const assert = chai.assert;
 // Starting tests.
 describe("Killing processes", () => {
   // Testing killProcess() works properly.
-  it("should run correct command for platform", () => {
+  it("should execute without errors", () => {
     // Call killProcess on notepad/gedit
-    const result = testFile.killProcess("gedit", process.platform);
+    if (process.platform !== "win32") {
+      const result = killProcFunc("gedit", process.platform);
+    } else {
+      const result = killProcFunc("notepad.exe", process.platform);
+    }
     assert.equal(result, true);
   });
 

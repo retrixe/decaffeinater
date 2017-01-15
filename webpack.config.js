@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+/* eslint-disable */
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const config = {
@@ -29,7 +29,7 @@ const config = {
   plugins: [
     new CopyWebpackPlugin(
       [{ from: "src/index.html", to: "index.html" }],
-      { copyUnmodified: true },
+      { copyUnmodified: true }
     ),
   ],
 };

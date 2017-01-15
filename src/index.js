@@ -62,7 +62,8 @@ class Index extends React.Component {
             if (!this.state.inProcess) {
               this.setState({ hours: e.target.value });
             }
-          }} />
+          }}
+        />
         <Input
           label="Time (in minutes)"
           type="number" fluid
@@ -71,7 +72,8 @@ class Index extends React.Component {
             if (!this.state.inProcess) {
               this.setState({ time: e.target.value });
             }
-          }} />
+          }}
+        />
         <Input
           label="Process"
           type="text" fluid
@@ -80,16 +82,18 @@ class Index extends React.Component {
             if (!this.state.inProcess) {
               this.setState({ process: e.target.value });
             }
-          }} />
+          }}
+        />
         <br />
         <Button onClick={this.onStart} content="Click to start" inverted fluid color="green" />
         <br />
-        <div></div>
-        <Progress value={this.state.countdown}
+        <div />
+        <Progress
+          value={this.state.countdown}
           total={absTimer}
           indicating autoSuccess
-          color="teal">
-          Time left: {absTimer - this.state.countdown} seconds left, out of {absTimer} seconds.
+          color="teal"
+        >Time left: {absTimer - this.state.countdown} seconds left, out of {absTimer} seconds.
         </Progress>
       </Segment>
     );
