@@ -4,7 +4,6 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import killProcess from "./killProc";
 
-
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
@@ -46,6 +45,12 @@ app.on("activate", () => {
     createWindow();
   }
 });
+
+// Insert what to do on crash here (soon).
+// app.webContents.on("crashed", () => { });
+
+// Insert what to do on unresponsive process here (soon).
+// app.on("unresponsive", () => { });
 
 // In this file you can include the rest of your app's specific main process
 ipcMain.on("iCanKill?", (event, arg) => {

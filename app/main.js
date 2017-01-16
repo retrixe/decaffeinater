@@ -94,17 +94,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /* eslint-env node */
 /* eslint-disable import/no-extraneous-dependencies */
-var win = void 0;
+let win;
 
 function createWindow() {
   // Create the browser window.
   win = new _electron.BrowserWindow({ width: 800, height: 600 });
 
   // and load the index.html of the app.
-  win.loadURL("file://" + __dirname + "/index.html");
+  win.loadURL(`file://${ __dirname }/index.html`);
 
   // Emitted when the window is closed.
-  win.on("closed", function () {
+  win.on("closed", () => {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
@@ -118,7 +118,7 @@ function createWindow() {
 _electron.app.on("ready", createWindow);
 
 // Quit when all windows are closed.
-_electron.app.on("window-all-closed", function () {
+_electron.app.on("window-all-closed", () => {
   // On macOS it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== "darwin") {
@@ -126,7 +126,7 @@ _electron.app.on("window-all-closed", function () {
   }
 });
 
-_electron.app.on("activate", function () {
+_electron.app.on("activate", () => {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (win === null) {
@@ -134,8 +134,17 @@ _electron.app.on("activate", function () {
   }
 });
 
+// Insert what to do on crash here (soon).
+_electron.app.webContents.on("crashed", () => {});
+
+// Insert what to do on unresponsive process here (soon).
+_electron.app.on("unresponsive", () => {});
+
+// Same as above except with uncaughtException
+_electron.app.on("uncaughtException", () => {});
+
 // In this file you can include the rest of your app's specific main process
-_electron.ipcMain.on("iCanKill?", function (event, arg) {
+_electron.ipcMain.on("iCanKill?", (event, arg) => {
   (0, _killProc2.default)(arg, process.platform);
 });
 
@@ -169,9 +178,9 @@ var _child_process = __webpack_require__(1116);
 // Creating a union type for processes.
 function killProcUnix(pid) {
   // eslint-disable-next-line no-unused-vars
-  (0, _child_process.exec)("killall -9 " + pid, function (error, stdout, stderr) {
+  (0, _child_process.exec)(`killall -9 ${ pid }`, (error, stdout, stderr) => {
     if (error) {
-      console.error("Failure to execute: " + error);
+      console.error(`Failure to execute: ${ error }`);
       return false;
     }
     return true;
@@ -184,9 +193,9 @@ function killProcUnix(pid) {
 /* eslint-disable no-console */
 function killProcWin(pid) {
   // eslint-disable-next-line no-unused-vars
-  (0, _child_process.exec)("taskkill /IM " + pid + " /F", function (error, stdout, stderr) {
+  (0, _child_process.exec)(`taskkill /IM ${ pid } /F`, (error, stdout, stderr) => {
     if (error) {
-      console.error("Failure to execute: " + error);
+      console.error(`Failure to execute: ${ error }`);
       return false;
     }
     return true;
@@ -203,8 +212,6 @@ function killProcess(proc, platform) {
   }
   return false;
 }
-
-module.exports = killProcess;
 
 /***/ }
 

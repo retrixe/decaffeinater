@@ -67211,8 +67211,6 @@ module.exports = require("util");
 "use strict";
 
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 __webpack_require__(533);
 
 var _electron = __webpack_require__(136);
@@ -67229,13 +67227,7 @@ var _semanticUiReact = __webpack_require__(534);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // polyfill to use async/await.
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } // polyfill to use async/await.
 /* eslint-disable import/no-extraneous-dependencies */
 // ipc communication to main process.
 
@@ -67245,24 +67237,17 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // sleep function to wait for some time.
 function sleep(s) {
-  return new Promise(function (resolve) {
-    return setTimeout(resolve, s * 1000);
-  });
+  return new Promise(resolve => setTimeout(resolve, s * 1000));
 }
 
 // Our main React component (and only one)
 // eslint-disable-next-line no-unused-vars
-
-var Index = function (_React$Component) {
-  _inherits(Index, _React$Component);
-
-  function Index(props) {
-    _classCallCheck(this, Index);
+class Index extends _react2.default.Component {
+  constructor(props) {
+    super(props);
 
     // Set up initial configuration for state.
-    var _this = _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).call(this, props));
-
-    _this.state = {
+    this.state = {
       time: 0,
       process: "",
       countdown: 0,
@@ -67271,139 +67256,90 @@ var Index = function (_React$Component) {
     };
 
     // Bind functions here.
-    _this.onStart = _this.onStart.bind(_this);
-    return _this;
+    this.onStart = this.onStart.bind(this);
   }
 
   // click handler to start the countdown till process terminates.
+  onStart() {
+    var _this = this;
 
-
-  _createClass(Index, [{
-    key: "onStart",
-    value: function () {
-      var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
-        var i, currentState, time, process;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                // initial variables here.
-                i = 0;
-                // following 3 lines prevents user from tampering state during countdown.
-
-                currentState = JSON.parse(JSON.stringify(this.state));
-                time = currentState.time * 60 + currentState.hours * 3600;
-                process = JSON.parse(JSON.stringify(this.state)).process;
-
-                this.setState({ inProcess: true });
-                // wait 1 second, then add 1 to this.state.countdown for (time) times.
-                i = 0;
-
-              case 6:
-                if (!(i < time)) {
-                  _context.next = 13;
-                  break;
-                }
-
-                _context.next = 9;
-                return sleep(1);
-
-              case 9:
-                this.setState({ countdown: this.state.countdown + 1 });
-
-              case 10:
-                i += 1;
-                _context.next = 6;
-                break;
-
-              case 13:
-                _electron.ipcRenderer.send("iCanKill?", process); // send ipc message to main proc to kill process.
-                this.setState({ countdown: 0, inProcess: false }); // reset countdown :D
-
-              case 15:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function onStart() {
-        return _ref.apply(this, arguments);
+    return _asyncToGenerator(function* () {
+      // initial variables here.
+      let i = 0;
+      // following 3 lines prevents user from tampering state during countdown.
+      const currentState = JSON.parse(JSON.stringify(_this.state));
+      const time = currentState.time * 60 + currentState.hours * 3600;
+      const process = JSON.parse(JSON.stringify(_this.state)).process;
+      _this.setState({ inProcess: true });
+      // wait 1 second, then add 1 to this.state.countdown for (time) times.
+      for (i = 0; i < time; i += 1) {
+        yield sleep(1);
+        _this.setState({ countdown: _this.state.countdown + 1 });
       }
+      _electron.ipcRenderer.send("iCanKill?", process); // send ipc message to main proc to kill process.
+      _this.setState({ countdown: 0, inProcess: false }); // reset countdown :D
+    })();
+  }
 
-      return onStart;
-    }()
-
-    // This function is big, but it's 90% styling, nothing of interest here.
-
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var absTimer = this.state.time * 60 + this.state.hours * 3600;
-      return _react2.default.createElement(
-        _semanticUiReact.Segment,
-        { style: { margin: "12px" }, raised: true },
-        _react2.default.createElement(_semanticUiReact.Input, {
-          label: "Time (in hours)",
-          type: "number", fluid: true,
-          placeholder: "Insert amount of time to play in hours.",
-          onChange: function onChange(e) {
-            if (!_this2.state.inProcess) {
-              _this2.setState({ hours: e.target.value });
-            }
+  // This function is big, but it's 90% styling, nothing of interest here.
+  render() {
+    const absTimer = this.state.time * 60 + this.state.hours * 3600;
+    return _react2.default.createElement(
+      _semanticUiReact.Segment,
+      { style: { margin: "12px" }, raised: true },
+      _react2.default.createElement(_semanticUiReact.Input, {
+        label: "Time (in hours)",
+        type: "number", fluid: true,
+        placeholder: "Insert amount of time to play in hours.",
+        onChange: e => {
+          if (!this.state.inProcess) {
+            this.setState({ hours: e.target.value });
           }
-        }),
-        _react2.default.createElement(_semanticUiReact.Input, {
-          label: "Time (in minutes)",
-          type: "number", fluid: true,
-          placeholder: "Insert amount of time to play in minutes.",
-          onChange: function onChange(e) {
-            if (!_this2.state.inProcess) {
-              _this2.setState({ time: e.target.value });
-            }
+        }
+      }),
+      _react2.default.createElement(_semanticUiReact.Input, {
+        label: "Time (in minutes)",
+        type: "number", fluid: true,
+        placeholder: "Insert amount of time to play in minutes.",
+        onChange: e => {
+          if (!this.state.inProcess) {
+            this.setState({ time: e.target.value });
           }
-        }),
-        _react2.default.createElement(_semanticUiReact.Input, {
-          label: "Process",
-          type: "text", fluid: true,
-          placeholder: "Insert the process name of the app.",
-          onChange: function onChange(e) {
-            if (!_this2.state.inProcess) {
-              _this2.setState({ process: e.target.value });
-            }
+        }
+      }),
+      _react2.default.createElement(_semanticUiReact.Input, {
+        label: "Process",
+        type: "text", fluid: true,
+        placeholder: "Insert the process name of the app.",
+        onChange: e => {
+          if (!this.state.inProcess) {
+            this.setState({ process: e.target.value });
           }
-        }),
-        _react2.default.createElement("br", null),
-        _react2.default.createElement(_semanticUiReact.Button, { onClick: this.onStart, content: "Click to start", inverted: true, fluid: true, color: "green" }),
-        _react2.default.createElement("br", null),
-        _react2.default.createElement("div", null),
-        _react2.default.createElement(
-          _semanticUiReact.Progress,
-          {
-            value: this.state.countdown,
-            total: absTimer,
-            indicating: true, autoSuccess: true,
-            color: "teal"
-          },
-          "Time left: ",
-          absTimer - this.state.countdown,
-          " seconds left, out of ",
-          absTimer,
-          " seconds."
-        )
-      );
-    }
-  }]);
-
-  return Index;
-}(_react2.default.Component);
+        }
+      }),
+      _react2.default.createElement("br", null),
+      _react2.default.createElement(_semanticUiReact.Button, { onClick: this.onStart, content: "Click to start", inverted: true, fluid: true, color: "green" }),
+      _react2.default.createElement("br", null),
+      _react2.default.createElement("div", null),
+      _react2.default.createElement(
+        _semanticUiReact.Progress,
+        {
+          value: this.state.countdown,
+          total: absTimer,
+          indicating: true, autoSuccess: true,
+          color: "teal"
+        },
+        "Time left: ",
+        absTimer - this.state.countdown,
+        " seconds left, out of ",
+        absTimer,
+        " seconds."
+      )
+    );
+  }
+}
 
 // Render final app to the screen :D
-
-
 _reactDom2.default.render(_react2.default.createElement(Index, null), document.getElementById("app"));
 
 /***/ }
