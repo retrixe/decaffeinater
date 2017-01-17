@@ -1,5 +1,5 @@
 {
-  "presets": ["react", ["env", {
+  "presets": ["react", "babili", ["env", {
     "targets": {
       "electron": 1.4
     }
