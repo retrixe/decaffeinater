@@ -14,7 +14,9 @@
     "watch": "webpack -w --progress",
     "start": "npm run build && electron .",
     "nobuild": "electron .",
-    "dist": "npm run build && build",
+    "dist": "npm run build && electron-packager ./app --electron-version 1.4.14 --app-version 1.2.0 --overwrite --out dist",
+    "make-exe": "node build/build.js",
+    "make-deb": "npm run dist && electron-installer-debian --json build/installer-debian.json --src dist/decaffeinater-linux-x64 --dest dist/installers/ --arch amd64",
     "test": "mocha --require babel-register"
   },
   "devDependencies": {
@@ -39,6 +41,8 @@
     "devtron": "^1.4.0",
     "electron": "^1.4.14",
     "electron-builder": "^11.2.4",
+    "electron-installer-debian": "^0.4.0",
+    "electron-packager": "^8.5.0",
     "electron-winstaller": "^2.5.1",
     "eslint": "^3.13.1",
     "eslint-config-airbnb": "^14.0.0",
