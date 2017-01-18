@@ -12,10 +12,10 @@
   "scripts": {
     "build": "webpack --progress",
     "watch": "webpack -w --progress",
-    "start": "webpack --progress && electron .",
+    "start": "npm run build && electron .",
     "nobuild": "electron .",
-    "dist": "webpack --progress && build",
-    "test": "mocha --compilers js:babel-register"
+    "dist": "npm run build && build",
+    "test": "mocha --require babel-register"
   },
   "devDependencies": {
     "@types/babel-core": "^6.7.14",
@@ -29,9 +29,10 @@
     "babel-core": "^6.21.0",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
-    "babel-preset-babili": "^0.0.9",
+    "babel-preset-babili": "^0.0.10",
     "babel-preset-env": "^1.1.8",
     "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0",
     "chai": "^3.5.0",
     "copy-webpack-plugin": "^4.0.1",

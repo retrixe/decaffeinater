@@ -1,21 +1,20 @@
 /* @flow */
+/* eslint-env mocha */
+
 /* This Mocha test is purely experimental.
 It does not work as of commit 90341bd but no
 longer fails Flow tests. The fix will arrive soon.
 Just adding, the remaining issue is the
 module returning undefined. */
 
-/* eslint-env mocha */
-// Importing the thing to test.
-import killProcess from "../src/killProc";
-
 // Importing necessary libraries.
-const process = require("process");
+import process from "process";
 
 // Importing assertion module and defining shortcuts.
-const chai = require("chai");
+import { assert } from "chai";
 
-const assert = chai.assert;
+// Importing the thing to test.
+import killProcess from "../src/killProc";
 
 // Starting tests.
 describe("Killing processes", () => {
