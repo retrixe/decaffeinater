@@ -4,13 +4,13 @@
 var electronInstaller = require("electron-winstaller");
 
 const resultPromise = electronInstaller.createWindowsInstaller({
-  appDirectory: ".",
+  appDirectory: "./app",
   outputDirectory: "./dist",
   authors: "Ibrahim Ansari",
   setupExe: "decaffeinater-installer.exe",
   setupMsi: "decaffeinater-installer.msi",
   iconUrl: "./build/icon.ico",
-  setupIcon: "./icon.ico",
+  setupIcon: "./build/icon.ico",
 });
 
 resultPromise.then(() => console.log("It worked!"), e => console.log(`No dice: ${e.message}`));
