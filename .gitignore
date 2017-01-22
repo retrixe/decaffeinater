@@ -1,2 +1,6 @@
 node_modules/
 dist/
+app/index.js
+app/index.js.map
+app/main.js
+app/main.js.map
