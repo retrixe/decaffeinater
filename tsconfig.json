@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "sourceMap": true,
+        "allowJs": true,
+        "noImplicitAny": true,
+        "module": "commonjs",
+        "target": "es2017",
+        "jsx": "preserve"
+    },
+    "include": [
+        "./src/**/*.ts"
+    ]
+}

@@ -4,8 +4,8 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const config = {
   target: "electron",
   entry: {
-    main: "./src/main.js",
-    index: "./src/index.js",
+    main: "./src/main.ts",
+    index: "./src/index.tsx",
   },
   output: {
     filename: "[name].js",
@@ -20,6 +20,19 @@ const config = {
   module: {
     rules: [
       {
+        enforce: 'pre',
+        test: /\.(js|tsx?)$/,
+        use: "source-map-loader"
+      },
+      {
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        use: [
+          "babel-loader",
+          "ts-loader"
+        ]
+      },
+      {
         test: /\.(js|jsx)$/,
         use: "babel-loader",
         exclude: /node_modules/,
@@ -32,6 +45,9 @@ const config = {
       { copyUnmodified: true }
     ),
   ],
+  resolve: {
+    extensions: [`.ts`, `.tsx`, `.js`, `.jsx`]
+  }
 };
 
 module.exports = config;

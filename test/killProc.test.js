@@ -1,4 +1,3 @@
-/* @flow */
 /* eslint-env mocha */
 
 /* This Mocha test is purely experimental.

@@ -3,9 +3,6 @@
 /* eslint-disable no-console */
 import { execSync } from "child_process";  // needed to run cmd commands.
 
-// Creating a union type for processes.
-type process = number | string;
-
 // Takes any parameter, detects the current platform
 // and then executes correct func to kill proc.
 export default function killProcess(proc: process, platform: string) {
