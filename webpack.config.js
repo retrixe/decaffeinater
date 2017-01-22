@@ -18,10 +18,10 @@ const config = {
     __filename: false,
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(js|jsx)$/,
-        loader: "babel-loader",
+        use: "babel-loader",
         exclude: /node_modules/,
       },
     ],

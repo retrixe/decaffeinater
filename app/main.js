@@ -63,23 +63,23 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1122);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1130);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 1116:
+/***/ 1124:
 /***/ (function(module, exports) {
 
 module.exports = require("child_process");
 
 /***/ }),
 
-/***/ 1122:
+/***/ 1130:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var _electron=__webpack_require__(136),_killProc=__webpack_require__(532),_killProc2=_interopRequireDefault(_killProc);function _interopRequireDefault(a){return a&&a.__esModule?a:{default:a}}let win;function createWindow(){win=new _electron.BrowserWindow({width:800,height:600}),win.loadURL(`file://${__dirname}/index.html`),win.on("closed",()=>{win=null})}_electron.app.on("ready",createWindow),_electron.app.on("window-all-closed",()=>{"darwin"!==process.platform&&_electron.app.quit()}),_electron.app.on("activate",()=>{null===win&&createWindow()}),_electron.ipcMain.on("iCanKill?",(a,b)=>{(0,_killProc2.default)(b,process.platform)});
+var _electron=__webpack_require__(136),_killProc=__webpack_require__(537),_killProc2=_interopRequireDefault(_killProc);function _interopRequireDefault(a){return a&&a.__esModule?a:{default:a}}let win;function createWindow(){win=new _electron.BrowserWindow({width:800,height:600}),win.loadURL(`file://${__dirname}/index.html`),win.on("closed",()=>{win=null})}_electron.app.on("ready",createWindow),_electron.app.on("window-all-closed",()=>{"darwin"!==process.platform&&_electron.app.quit()}),_electron.app.on("activate",()=>{null===win&&createWindow()}),_electron.ipcMain.on("iCanKill?",(a,b)=>{(0,_killProc2.default)(b,process.platform)});
 
 /***/ }),
 
@@ -90,11 +90,11 @@ module.exports = require("electron");
 
 /***/ }),
 
-/***/ 532:
+/***/ 537:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=killProcess;var _child_process=__webpack_require__(1116);function killProcess(a,b){"win32"===b?(0,_child_process.execSync)(`taskkill /IM ${a} /F`,c=>{return!c||(console.error(`Failure to execute: ${c}`),!1)}):"win32"!=b&&(0,_child_process.execSync)(`killall -9 ${a}`,c=>{return!c||(console.error(`Failure to execute: ${c}`),!1)})}
+Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=killProcess;var _child_process=__webpack_require__(1124);function killProcess(a,b){"win32"===b?(0,_child_process.execSync)(`taskkill /IM ${a} /F`,c=>{return!c||(console.error(`Failure to execute: ${c}`),!1)}):"win32"!=b&&(0,_child_process.execSync)(`killall -9 ${a}`,c=>{return!c||(console.error(`Failure to execute: ${c}`),!1)})}
 
 /***/ })
 
