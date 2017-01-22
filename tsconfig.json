@@ -1,8 +1,9 @@
 {
     "compilerOptions": {
         "sourceMap": true,
+        "allowJs": true,
         "noImplicitAny": true,
-        "module": "ES2015",
+        "module": "es2015",
         "target": "ESNext",
         "jsx": "preserve"
     },
