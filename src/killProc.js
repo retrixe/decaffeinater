@@ -1,11 +1,10 @@
-/* @flow */
 /* eslint-env node */
 /* eslint-disable no-console */
 import { execSync } from "child_process";  // needed to run cmd commands.
 
 // Takes any parameter, detects the current platform
 // and then executes correct func to kill proc.
-export default function killProcess(proc: process, platform: string) {
+export default function killProcess(proc, platform) {
   if (platform === "win32") {
     // eslint-disable-next-line no-unused-vars
     execSync(`taskkill /IM ${proc} /F`, (error, stdout, stderr) => {
