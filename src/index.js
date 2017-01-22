@@ -8,25 +8,14 @@ import ReactDOM from "react-dom";
 import { Button, Input, Progress, Segment } from "semantic-ui-react";
 
 // sleep function to wait for some time.
-function sleep(s: number) {
+function sleep(s) {
   return new Promise(resolve => setTimeout(resolve, s * 1000));
 }
 
-// Describing the shape of props and state.
-interface IndexProps {  };
-// below is experimental interface.
-interface IndexState {
-  time?: number;
-  process?: string;
-  countdown?: number;
-  hours?: number;
-  inProcess?: boolean;
-};
-
 // Our main React component (and only one)
 // eslint-disable-next-line no-unused-vars
-class Index extends React.Component<IndexProps, IndexState> {
-  constructor(props: any) {
+class Index extends React.Component {
+  constructor(props) {
     super(props);
 
     // Set up initial configuration for state.

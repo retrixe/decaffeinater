@@ -5,6 +5,7 @@ module.exports = {
         "es6": true
     },
     "extends": "eslint-config-airbnb",
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,
@@ -12,6 +13,10 @@ module.exports = {
         },
         "sourceType": "module"
     },
+    "plugins": [
+        "react",
+        "flowtype"
+    ],
     "rules": {
         "indent": [
             "error",

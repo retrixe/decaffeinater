@@ -6,7 +6,7 @@ import killProcess from "./killProc";
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let win: any;
+let win;
 
 function createWindow() {
   // Create the browser window.
