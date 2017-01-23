@@ -23,8 +23,9 @@ install:
 build_script:
   - yarn make-exe
 
-test:
-  - yarn test
+# I dunno how to appveyor tests and tests dont work.
+#test:
+#  - yarn test
 
 #deploy:
 #  provider: S3

@@ -1,5 +1,5 @@
 # decaffeinater
-## Dependency status: [![dependencies Status](https://david-dm.org/ibujs/decaffeinater/status.svg)](https://david-dm.org/ibujs/decaffeinater) [![devDependencies Status](https://david-dm.org/ibujs/decaffeinater/dev-status.svg)](https://david-dm.org/ibujs/decaffeinater?type=dev) [![Dependency Status](https://dependencyci.com/github/ibujs/decaffeinater/badge)](https://dependencyci.com/github/ibujs/decaffeinater)
+## Dependency status: [![dependencies Status](https://david-dm.org/ibujs/decaffeinater/status.svg)](https://david-dm.org/ibujs/decaffeinater) [![devDependencies Status](https://david-dm.org/ibujs/decaffeinater/dev-status.svg)](https://david-dm.org/ibujs/decaffeinater?type=dev) [![optionalDependencies Status](https://david-dm.org/ibujs/decaffeinater/optional-status.svg)](https://david-dm.org/ibujs/decaffeinater?type=optional) [![Dependency Status](https://dependencyci.com/github/ibujs/decaffeinater/badge)](https://dependencyci.com/github/ibujs/decaffeinater)
 
 ## Current build status:
 ### Windows:

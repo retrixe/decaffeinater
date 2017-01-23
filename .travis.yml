@@ -19,7 +19,8 @@ cache:
 script:
   - yarn generate-lock-entry
   - yarn make-dmg
-  - yarn test
+# Testing doesn't work properly rn.
+#  - yarn test
 
 branches:
   only:
