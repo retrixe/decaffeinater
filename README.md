@@ -10,7 +10,7 @@
 [![Build Status](https://circleci.com/gh/ibujs/decaffeinater.svg?style=svg)](https://circleci.com/gh/ibujs/decaffeinater)
 
 ## Enough badges, let's cut to the chase, shall we?
-This thing is for people who just spend way too much time gaming when they should be utilizing time for more productive purposes. This app fixes that. Essentially, select the time, select the app, and use the app until decaffeinater automatically kills it. Kinda hardcore. Built with React and Electron :D
+This thing is for people who just spend way too much time gaming when they should be utilizing time for more productive purposes. This app fixes that. Essentially, select the time, select the app, and use the app until decaffeinater automatically kills it. Kinda hardcore. Built with React and Electron :)
 
 ## Installation (quick copy-and-paste job, for more clarity, open an issue in the issue section :3 )
 ### Windows
@@ -27,7 +27,7 @@ Refer to compiling binaries.
 #### Using a binary.
 [Click here](https://github.com/ibujs/decaffeinater/releases) to go to the releases page, and download the .tar.gz file for the latest stable release from there and install it.
 
-## Compiling binaries
+## Compiling binaries (obsolete, once new system is in place, this'll be revised, use 1.2 if doing this)
 To compile binaries, you require a development environment (refer to Setting up a development environment) after which you can run the following commands to compile an executable, which you will find in a dist folder.
 ```
 # macOS compilation options.
@@ -63,10 +63,21 @@ Finally, open a terminal window in the folder where the app is located and execu
 > npm install
 > npm start
 ```
-### Recommended development tools:
+### Recommended development tools and standards:
 - [ ] Atom with linter-eslint package, or Visual Studio Code.
 - [ ] Node.js v6/v7
 - [ ] Yarn package manage instead of npm
 - [ ] React development tools on Electron ([refer here](https://github.com/electron/electron/blob/master/docs/tutorial/devtools-extension.md))
+- [ ] DevTron on Electron ([refer here] (electron.atom.io/devtron))
 
-On a side note for devs: Use ES2015/ES2016/ES2017 in main.js and index.js ONLY. Other files must be in ES5.
+#### The basic directory structure.
+- `src/` contains everything that is executed.
+- `app/` containg a package.json which is bundled with the app, and compiled files.
+- `build/` contains build configuration and build tasks.
+- `dist/` is generated when you compile the app, you will find executables and installers inside.
+- `test/` contains tests run by mocha using chai.
+- `flow-typed/` contains typings for flow.
+
+#### Coding standards.
+- Everything can be coded in ES6 (also ESNext and ES2017) except `webpack.config.js` and `build/*`. Anything in `app` (excluding the `package.json` inside) and `flow-typed` is not to be touched, these are generated directories.
+- Please lint your code with ESLint and type check it with Flow (command to do this coming soon, rn use plugins for your code editor). ESLint follows the airbnb coding standard.
