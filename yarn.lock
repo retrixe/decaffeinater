@@ -227,7 +227,7 @@ asar@^0.11.0:
     mkdirp "^0.5.0"
     mksnapshot "^0.3.0"
 
-asar@^0.12.3:
+asar@^0.12.0, asar@^0.12.3:
   version "0.12.4"
   resolved "https://registry.yarnpkg.com/asar/-/asar-0.12.4.tgz#2dd3f116882eab8c0f23b754792a82a7d9fce171"
   dependencies:
@@ -282,7 +282,11 @@ async-each@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/async-each/-/async-each-1.0.1.tgz#19d386a1d9edc6e7c1c85d388aedbcc56d33602d"
 
-async@^2.1.2:
+async@^1.4.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
+
+async@^2.0.0, async@^2.1.2:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/async/-/async-2.1.4.tgz#2d2160c7788032e4dd6cbe2502f1f9a2c8f6cde4"
   dependencies:
@@ -1852,6 +1856,21 @@ electron-download@^3.0.0, electron-download@^3.0.1:
     semver "^5.3.0"
     sumchecker "^1.2.0"
 
+electron-installer-debian@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/electron-installer-debian/-/electron-installer-debian-0.4.0.tgz#02d9a54194390a7f0ce7aec2d87b206164c7ea5f"
+  dependencies:
+    asar "^0.12.0"
+    async "^2.0.0"
+    debug "^2.2.0"
+    fs-extra "^0.30.0"
+    get-folder-size "^1.0.0"
+    glob "^7.0.0"
+    lodash "^4.13.0"
+    temp "^0.8.3"
+    word-wrap "^1.1.0"
+    yargs "^6.0.0"
+
 electron-osx-sign@^0.4.1:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/electron-osx-sign/-/electron-osx-sign-0.4.2.tgz#518e3895a63d30c0d17520ad49c66a23d66a0cd3"
@@ -2218,7 +2237,7 @@ fast-levenshtein@~2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
 
-fbjs@^0.8.4:
+fbjs@^0.8.1, fbjs@^0.8.4:
   version "0.8.8"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.8.tgz#02f1b6e0ea0d46c24e0b51a2d24df069563a5ad6"
   dependencies:
@@ -2419,6 +2438,13 @@ generate-object-property@^1.1.0:
 get-caller-file@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.2.tgz#f702e63127e7e231c160a80c1554acb70d5047e5"
+
+get-folder-size@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/get-folder-size/-/get-folder-size-1.0.0.tgz#134d663a0e745611b72f71c83b13f1b12f31ba29"
+  dependencies:
+    async "^1.4.2"
+    minimist "^1.2.0"
 
 get-func-name@^1.0.0:
   version "1.0.0"
@@ -3102,7 +3128,7 @@ lodash.templatesettings@^4.0.0:
   dependencies:
     lodash._reinterpolate "~3.0.0"
 
-lodash@^4.0.0, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.17.2, lodash@^4.2.0, lodash@^4.3.0:
+lodash@^4.0.0, lodash@^4.13.0, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.17.2, lodash@^4.2.0, lodash@^4.3.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -3690,17 +3716,17 @@ rcedit@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/rcedit/-/rcedit-0.7.0.tgz#560b2920165034a135316e6a111f8274b9cec521"
 
-react-dom@16.0.0-alpha:
-  version "16.0.0-alpha"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.0.0-alpha.tgz#51c7e7c0d34342a29614e3a91f3905625fc134af"
+react-dom@^15.4.2:
+  version "15.4.2"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.4.2.tgz#015363f05b0a1fd52ae9efdd3a0060d90695208f"
   dependencies:
-    fbjs "^0.8.4"
+    fbjs "^0.8.1"
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
 
-react@16.0.0-alpha:
-  version "16.0.0-alpha"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.0.0-alpha.tgz#bd24eb7e44a4989874dbb68e46dc918c48a3c6f1"
+react@^15.4.2:
+  version "15.4.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-15.4.2.tgz#41f7991b26185392ba9bae96c8889e7e018397ef"
   dependencies:
     fbjs "^0.8.4"
     loose-envify "^1.1.0"
@@ -4477,6 +4503,10 @@ wide-align@^1.1.0:
 window-size@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.1.0.tgz#5438cd2ea93b202efa3a19fe8887aee7c94f9c9d"
+
+word-wrap@^1.1.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.0.tgz#ee971b6b7ce9ecae73a4b89a1cfdaa48dcf38ce7"
 
 wordwrap@0.0.2:
   version "0.0.2"

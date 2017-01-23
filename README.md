@@ -1,5 +1,15 @@
-# decaffeinater [![Build Status](https://travis-ci.org/ibujs/decaffeinater.svg?branch=master)](https://travis-ci.org/ibujs/decaffeinater) [![dependencies Status](https://david-dm.org/ibujs/decaffeinater/status.svg)](https://david-dm.org/ibujs/decaffeinater) [![devDependencies Status](https://david-dm.org/ibujs/decaffeinater/dev-status.svg)](https://david-dm.org/ibujs/decaffeinater?type=dev) [![Build status](https://ci.appveyor.com/api/projects/status/mi1xslomqvmq1e46?svg=true)](https://ci.appveyor.com/project/ibujs/decaffeinater) [![Dependency Status](https://dependencyci.com/github/ibujs/decaffeinater/badge)](https://dependencyci.com/github/ibujs/decaffeinater)
+# decaffeinater
+## Dependency status: [![dependencies Status](https://david-dm.org/ibujs/decaffeinater/status.svg)](https://david-dm.org/ibujs/decaffeinater) [![devDependencies Status](https://david-dm.org/ibujs/decaffeinater/dev-status.svg)](https://david-dm.org/ibujs/decaffeinater?type=dev) [![Dependency Status](https://dependencyci.com/github/ibujs/decaffeinater/badge)](https://dependencyci.com/github/ibujs/decaffeinater)
 
+## Current build status:
+### Windows:
+[![Build Status](https://ci.appveyor.com/api/projects/status/mi1xslomqvmq1e46)](https://ci.appveyor.com/project/ibujs/decaffeinater)
+### macOS:
+[![Build Status](https://travis-ci.org/ibujs/decaffeinater.svg?branch=master)](https://travis-ci.org/ibujs/decaffeinater)
+### Linux:
+[![Build Status](https://circleci.com/gh/ibujs/decaffeinater.svg?style=svg)](https://circleci.com/gh/ibujs/decaffeinater)
+
+## Enough badges, let's cut to the chase, shall we?
 This thing is for people who just spend way too much time gaming when they should be utilizing time for more productive purposes. This app fixes that. Essentially, select the time, select the app, and use the app until decaffeinater automatically kills it. Kinda hardcore. Built with React and Electron :D
 
 ## Installation (quick copy-and-paste job, for more clarity, open an issue in the issue section :3 )

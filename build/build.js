@@ -4,7 +4,7 @@
 var electronInstaller = require("electron-winstaller");
 
 const resultPromise = electronInstaller.createWindowsInstaller({
-  appDirectory: "./app",
+  appDirectory: "./dist/decaffeinater-win32-x64",
   outputDirectory: "./dist",
   authors: "Ibrahim Ansari",
   setupExe: "decaffeinater-installer.exe",

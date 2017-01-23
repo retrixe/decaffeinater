@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.22.0",
-    "react": "16.0.0-alpha",
-    "react-dom": "16.0.0-alpha",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
     "semantic-ui-react": "^0.64.3"
   },
   "scripts": {
@@ -20,7 +20,8 @@
     "start": "npm run build && electron .",
     "nobuild": "electron .",
     "dist": "npm run build && electron-packager ./app --electron-version 1.4.14 --app-version 1.2.0 --overwrite --out dist",
-    "make-exe": "node build/build.js",
+    "make-exe": "npm run dist && node build/build.js",
+    "make-dmg": "npm run dist",
     "make-deb": "npm run dist && electron-installer-debian --json build/installer-debian.json --src dist/decaffeinater-linux-x64 --dest dist/installers/ --arch amd64",
     "test": "mocha --require babel-register"
   },
@@ -57,19 +58,7 @@
     "mocha": "^3.2.0",
     "webpack": "2.2.0"
   },
-  "peerDependencies": {
+  "optionalDependencies": {
     "electron-installer-debian": "^0.4.0"
-  },
-  "build": {
-    "appId": "com.decaffeinater",
-    "mac": {
-      "category": "public.app-category.productivity"
-    },
-    "linux": {
-      "target": "deb",
-      "synopsis": "An app which closes apps if you use them too much.",
-      "category": "Utility",
-      "desktop": "build/decaffeinater.desktop"
-    }
   }
 }

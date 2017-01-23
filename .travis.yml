@@ -1,12 +1,13 @@
-osx_image: xcode8.1
-sudo: required
-dist: trusty
+# We need to fix deployment now.
+osx_image: xcode8.2
+
 os:
-- linux
-- osx
+  - osx
+
 language: node_js
+
 node_js:
-- node
+  - "7.4.0"
 cache:
   directories:
   - node_modules
@@ -14,27 +15,23 @@ cache:
   - "$HOME/.electron"
   - "$HOME/.cache"
   yarn: true
-addons:
-  apt:
-    packages:
-    - rpm
-    - graphicsmagick
-    - icnsutils
-    - xz-utils
+
 script:
-  - test "$TRAVIS_OS_NAME" == "osx" && (yarn dist -- --mac dmg) || (exit 0)
-  - test "$TRAVIS_OS_NAME" == "linux" && (yarn dist -- --linux deb rpm tar.gz) || (exit 0)
+  - yarn generate-lock-entry
+  - yarn make-dmg
+  - yarn test
+
 branches:
   only:
   - master
-deploy:
-  provider: releases
-  api_key:
-    secure: FxGSr9PUXAsI0rjJcRZCHvrySNTceRbo0UF18qqzUfhlVF15yJA4Zxu64gd99EuEmfTi41ImDugxP8tGLt9fuPE6ek1E6p4RQTvnxmn4c2tAIWgrqQT3zT+OswVJ5EK+g9A1zMfB/2h2yeY2QzJ5eHkmbfn5EERe1lcqlsxN1cJMGxpmF7bUsgmE5G/Hya6MXhGPUGJCqB3pR0jjVZ213W1FLr7ZoyRinMj40To8+nHuR6h9THhq9aEPaDeoKmuBcp0lssu7xgluUFseP28jppk8iHwU3hShIRz/4yoBO1Mc6ItGFpz4/j7IbwgWaJ1cgo571ot/SlC58memZIYvR93Na6SMpszIt2e8Oa9/DG8NK8ROE56iiumFltXFD/kDXuRzThcwNpvWuFki6ln6JC1a4iVFevV//aKQ3jqnMoIDc5gIg+p06ZLxgXS5vPuT1OJ2J1xweH/Zz+3g3A3Xg86Y0g62eQdNlKLyll0NmdHMnR/4mrmfzPcxpE6cqj5xrMuyu7IVw7MXmW9xndk7T8t7wAeOa8AHDyatA+LYR9oQOPrT54T7nP7PgDHci4ErqjauAfKLn87O2GfzY7VSSUaVWZDbfx02E5ZhCOHU8BuUWTXmsHU2lwqWLkXE0dJs+ZhFG2GJR3oBc8DCg2bW8NeeSuuqpCJdQ63Ylprx7Cw=
-  file:
-    - dist/decaffeinater-1.2.0.rpm
-    - dist/decaffeinater-1.2.0.tar.gz
-    - dist/decaffeinater_1.2.0_amd64.deb
-    - dist/mac/decaffeinater-1.2.0.dmg
-  on:
-    tags: true
+
+#deploy:
+#  provider: s3
+#  access_key_id: "YOUR AWS ACCESS KEY"
+#  secret_access_key: "YOUR AWS SECRET KEY"
+#  bucket: "S3 Bucket"
+#  skip_cleanup: true
+#  region: eu-west-1
+#  on:
+    # Edit the below line to ibujs/decaffeinater to deploy.
+#    repo: ibujs/decaf
