@@ -1,5 +1,5 @@
 # decaffeinater
-## Dependency status: [![dependencies Status](https://david-dm.org/ibujs/decaffeinater/status.svg)](https://david-dm.org/ibujs/decaffeinater) [![devDependencies Status](https://david-dm.org/ibujs/decaffeinater/dev-status.svg)](https://david-dm.org/ibujs/decaffeinater?type=dev) [![optionalDependencies Status](https://david-dm.org/ibujs/decaffeinater/optional-status.svg)](https://david-dm.org/ibujs/decaffeinater?type=optional) [![Dependency Status](https://dependencyci.com/github/ibujs/decaffeinater/badge)](https://dependencyci.com/github/ibujs/decaffeinater)
+## Dependency status: [![dependencies Status](https://david-dm.org/ibujs/decaffeinater/status.svg)](https://david-dm.org/ibujs/decaffeinater) [![devDependencies Status](https://david-dm.org/ibujs/decaffeinater/dev-status.svg)](https://david-dm.org/ibujs/decaffeinater?type=dev) [![Dependency Status](https://dependencyci.com/github/ibujs/decaffeinater/badge)](https://dependencyci.com/github/ibujs/decaffeinater)
 
 ## Current build status:
 ### Windows:
@@ -27,7 +27,7 @@ Refer to compiling binaries.
 #### Using a binary.
 [Click here](https://github.com/ibujs/decaffeinater/releases) to go to the releases page, and download the .tar.gz file for the latest stable release from there and install it.
 
-## Compiling binaries (obsolete, once new system is in place, this'll be revised, use 1.2 if doing this)
+## Compiling binaries
 To compile binaries, you require a development environment (refer to Setting up a development environment) after which you can run the following commands to compile an executable, which you will find in a dist folder.
 ```
 # macOS compilation options.
@@ -35,7 +35,7 @@ To compile binaries, you require a development environment (refer to Setting up 
 > npm run dist -- --mac pkg             # Compile a pkg on macOS.
 
 # Windows compiliation options.
-> npm run dist -- --win                 # Compile an exe installer on Windows.
+> npm run make-exe                      # Compile an exe installer on Windows.
 
 # Linux compilation options.
 > npm run dist -- --linux deb           # Compile a deb installer on apt-based Linux distros.
@@ -44,11 +44,12 @@ To compile binaries, you require a development environment (refer to Setting up 
 
 # Compiling for all 3 platforms (using deb and dmg for macOS and Linux)
 # Did you read the section below about compiling for other OSes from your own? o.o
-> npm run dist -- -mwl
+> npm run dist -- --mac --linux && npm run make-exe
 ```
 
 ### Compiling for another OS from your current OS.
 If you wish to create a package for another OS from your current OS, you need to get necessary tools which enable electron-builder to compile cross-platform.
+
 1. Setup a development environment.
 2. Follow instructions [here](https://github.com/electron-userland/electron-builder/wiki/Multi-Platform-Build) to setup cross-platform compilation.
 3. Now, you can execute the command of your choice from the above section to compile a binary.
@@ -64,9 +65,9 @@ Finally, open a terminal window in the folder where the app is located and execu
 > npm start
 ```
 ### Recommended development tools and standards:
-- [ ] Atom with linter-eslint package, or Visual Studio Code.
+- [ ] Atom with linter-eslint package, or Visual Studio Code with the flowtype and ESLint plugins.
 - [ ] Node.js v6/v7
-- [ ] Yarn package manage instead of npm
+- [ ] Yarn package manager instead of npm
 - [ ] React development tools on Electron ([refer here](https://github.com/electron/electron/blob/master/docs/tutorial/devtools-extension.md))
 - [ ] DevTron on Electron ([refer here] (electron.atom.io/devtron))
 
