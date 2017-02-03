@@ -12,8 +12,11 @@ dependencies:
     - ~/.cache/yarn
 
 compile:
+  pre:
+    - sudo apt install -y rpm graphicsmagick xz-utils
+  override:
+    - yarn dist -- --linux deb rpm tar.gz
   post:
-    - yarn make-deb
     - mv dist/ $CIRCLE_ARTIFACTS/
 
 test:

@@ -18,7 +18,7 @@ cache:
 
 script:
   - yarn generate-lock-entry
-  - yarn make-dmg
+  - yarn dist -- --mac pkg dmg
 # Testing doesn't work properly rn.
 #  - yarn test
 
