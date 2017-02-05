@@ -5,7 +5,7 @@ const config = {
   target: "electron",
   entry: {
     main: "./src/main.js",
-    index: "./src/index.js",
+    index: "./src/index.jsx",
   },
   output: {
     filename: "[name].js",

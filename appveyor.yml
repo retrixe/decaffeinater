@@ -21,18 +21,25 @@ install:
   - yarn
 
 build_script:
-  - yarn make-exe
+  - yarn dist -- --win
 
 # I dunno how to appveyor tests and tests dont work.
 #test:
 #  - yarn test
 
+artifacts:
+  - path: dist
+    name: Build
+
 #deploy:
 #  provider: S3
 #  access_key_id:
 #  secret_access_key:
-#  bucket:
-#  region: eu-west-1
-#  set_public: true|false (disabled by default)
+#  bucket: sansari-home
+#  region: ap-south-1
+#  set_public: true
 #  folder:
-#  artifact:
+#  artifact: dist
+#  on:
+    # Change the branch to master when deploying a new release.
+#    branch: master-nobuild
