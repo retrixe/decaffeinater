@@ -1,4 +1,4 @@
-# We need to fix deployment now.
+# We need to fix deployment and macOS now.
 osx_image: xcode8.2
 
 os:

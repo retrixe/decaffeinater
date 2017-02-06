@@ -1,4 +1,3 @@
-# We need to fix deployment now.
 version: 'v1.2.0-{build}'
 
 platform:
@@ -28,18 +27,5 @@ build_script:
 #  - yarn test
 
 artifacts:
-  - path: dist
-    name: Build
-
-#deploy:
-#  provider: S3
-#  access_key_id:
-#  secret_access_key:
-#  bucket: sansari-home
-#  region: ap-south-1
-#  set_public: true
-#  folder:
-#  artifact: dist
-#  on:
-    # Change the branch to master when deploying a new release.
-#    branch: master-nobuild
+  - path: dist\decaffeinater*.exe
+    name: decaffeinater-setup
