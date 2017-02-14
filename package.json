@@ -1,7 +1,7 @@
 {
   "name": "decaffeinater",
   "description": "An app which closes apps if you use them too much.",
-  "version": "1.2.0",
+  "version": "1.3.0-alpha1",
   "main": "app/main.js",
   "license": "Apache-2.0",
   "repository": {
@@ -21,7 +21,7 @@
     "nobuild": "electron .",
     "dist": "npm run build && build",
     "pack": "npm run build && build --dir",
-    "make-exe": "npm run pack && node build/build.js",
+    "make-exe": "npm run dist && node build/build.js",
     "test": "mocha --require babel-register"
   },
   "devDependencies": {
