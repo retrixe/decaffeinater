@@ -25,6 +25,7 @@ script:
 branches:
   only:
   - master
+  - /^greenkeeper/.*$/
 
 #deploy:
 #  provider: s3
