@@ -21,21 +21,10 @@ script:
   - yarn dist -- --mac pkg dmg
 # Testing doesn't work properly rn.
 #  - yarn test
+  - node deploy.js
 
 branches:
   only:
   - master
   - /^greenkeeper/.*$/
-
-#deploy:
-#  provider: s3
-#  access_key_id: ''
-#  secret_access_key: ''
-#  bucket: sansari-home
-#  skip_cleanup: true
-#  region: ap-south-1
-#  local-dir: dist
-#  upload-dir: home/ibrahim/decaffeinater-builds/macos
-#  on:
-    # Change the repo to ibujs/decaffeinater when deploying new releases.
-#    repo: ibujs/decaffeinater-nodeploy
+  - deploy

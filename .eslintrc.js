@@ -46,6 +46,9 @@ module.exports = {
         ],
         "no-var": [
             "off"
+        ],
+        "camelcase": [
+            "off"
         ]
     }
 }
