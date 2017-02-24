@@ -45,7 +45,7 @@
     "copy-webpack-plugin": "^4.0.1",
     "devtron": "^1.4.0",
     "electron": "1.5.0",
-    "electron-builder": "^13.9.0",
+    "electron-builder": "^14.4.0",
     "electron-devtools-installer": "^2.1.0",
     "electron-installer-dmg-yarn": "^0.2.0-yarn3",
     "electron-packager": "^8.5.1",
