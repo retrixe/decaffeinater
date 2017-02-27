@@ -2,6 +2,7 @@
   "presets": ["react", "stage-0", "babili", ["env", {
     "targets": {
       "electron": 1.4
-    }
+    },
+    "modules": false
   }]]
 }
