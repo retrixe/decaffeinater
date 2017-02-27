@@ -35,8 +35,12 @@ function editGitignore(newGitignore) {
   });
 }
 
-const branch = child_process.execSync("git rev-parse --abbrev-ref HEAD");
+const branch = child_process.execSync("git rev-parse --abbrev-ref HEAD").toString();
 
 if (branch === "deploy") {
   editGitignore(newGitignoreContent);
+  child_process("git config user.name \"Travis CI Deployer\" && git config user.email \"$COMMIT_AUTHOR_EMAIL\"");
+  child_process.execSync("git add dist/*");
+  child_process.execSync("git commit -m \"\"");
+  child_process.execSync("git push");
 }
