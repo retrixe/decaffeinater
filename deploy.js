@@ -8,6 +8,8 @@ being built. This script is compatible with
 for the repo ibujs/decaffeinater on GitHub.
 Update this file when you update .gitignore */
 
+// This is extremely buggy as of yet. It can cause a recursive CI loop and push indefinite commits without supervision.
+
 // Imports.
 const fs = require("fs");
 const child_process = require("child_process");
@@ -41,6 +43,6 @@ if (branch === "deploy") {
   editGitignore(newGitignoreContent);
   child_process("git config user.name \"Travis CI Deployer\" && git config user.email \"$COMMIT_AUTHOR_EMAIL\"");
   child_process.execSync("git add dist/*");
-  child_process.execSync("git commit -m \"\"");
+  child_process.execSync("git commit -m \"Deploy!!! :D\"");
   child_process.execSync("git push");
 }
