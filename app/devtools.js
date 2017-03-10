@@ -1,4 +1,4 @@
-// @flow
+// No Flow, will be checked randomly.
 /* eslint-env node */
 /* eslint-disable import/no-extraneous-dependencies, no-console */
 

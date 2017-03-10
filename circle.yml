@@ -7,7 +7,8 @@ machine:
 
 dependencies:
   override:
-    - yarn
+  # update with yarn when 0.23 hits rc
+    - npm install
   cache_directories:
     - ~/.cache/yarn
 
@@ -15,7 +16,8 @@ compile:
   pre:
     - sudo apt install -y rpm graphicsmagick xz-utils
   override:
-    - yarn dist -- --linux deb rpm tar.gz
+  # update with yarn when 0.23 hits rc
+    - npm run dist -- --linux deb rpm tar.gz
   post:
     - mv dist/ $CIRCLE_ARTIFACTS/
 

@@ -8,7 +8,7 @@ being built. This script is compatible with
 for the repo ibujs/decaffeinater on GitHub.
 Update this file when you update .gitignore */
 
-// This is extremely buggy as of yet. It can cause a recursive CI loop and push indefinite commits without supervision.
+// This is extremely buggy as of yet. It can cause a recursive CI loop and push indefinite commits.
 
 // Imports.
 const fs = require("fs");
@@ -41,7 +41,9 @@ const branch = child_process.execSync("git rev-parse --abbrev-ref HEAD").toStrin
 
 if (branch === "deploy") {
   editGitignore(newGitignoreContent);
-  child_process("git config user.name \"Travis CI Deployer\" && git config user.email \"$COMMIT_AUTHOR_EMAIL\"");
+  let random = "lol";
+  random = "git config user.name \"Travis\" && git config user.email \"$COMMIT_AUTHOR_EMAIL\"";
+  child_process.execSync(random);
   child_process.execSync("git add dist/*");
   child_process.execSync("git commit -m \"Deploy!!! :D\"");
   child_process.execSync("git push");
