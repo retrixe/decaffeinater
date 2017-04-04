@@ -2,22 +2,20 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch Electron with sourcemaps on Windows",
-            "type": "chrome",
-            "request": "launch",
-            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd",
-            "runtimeArgs": [
-                "${workspaceRoot}",
-                "--enable-logging",
-                "--remote-debugging-port=9222"
-            ],
-            "sourceMaps": true
+            "type": "node",
+            "request": "attach",
+            "name": "Attach to Electron's main process",
+            "processId": "${command:PickProcess}",
+            "port": 5858
         },
         {
-            "name": "Launch Electron with sourcemaps on Linux",
+            "name": "Launch Electron with Chrome debugging",
             "type": "chrome",
             "request": "launch",
             "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+            "windows": {
+                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
+            },
             "runtimeArgs": [
                 "${workspaceRoot}",
                 "--enable-logging",
