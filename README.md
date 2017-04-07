@@ -12,7 +12,7 @@
 ## Enough badges, let's cut to the chase, shall we?
 This thing is for people who just spend way too much time gaming when they should be utilizing time for more productive purposes. This app fixes that. Essentially, select the time, select the app, and use the app until decaffeinater automatically kills it. Kinda hardcore. Built with React and Electron :)
 
-### Use Yarn 0.23.0+ (nightly as of 7/3/2017), else yarn throws errors.
+### Use Yarn 0.23.0+ (release candidate (available for download on npm now `npm install yarn@0.23.0`) as of 7/3/2017), else yarn throws errors.
 
 ## Installation (quick copy-and-paste job, for more clarity, open an issue in the issue section :3 )
 ### Windows
