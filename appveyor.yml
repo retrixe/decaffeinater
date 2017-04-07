@@ -16,13 +16,11 @@ init:
 install:
   - ps: Install-Product node 7 x64
   - git reset --hard HEAD
-  - npm install npm yarn -g
-  # update with yarn when 0.23 hits rc
-  - npm install
+  - npm install npm yarn@0.23.0 -g
+  - yarn
 
 build_script:
-  # update with yarn when 0.23 hits rc
-  - npm run dist -- --win
+  - yarn dist -- --win
 
 # I dunno how to appveyor tests and tests dont work.
 #test:
