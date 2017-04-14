@@ -1,111 +1,48 @@
 // @flow
-import "babel-polyfill";                     // polyfill to use async/await.
-/* eslint-disable import/no-extraneous-dependencies */
-import { ipcRenderer } from "electron";        // ipc communication to main process.
+// Import React.
 import React from "react";
 import ReactDOM from "react-dom";
-// Following imports for material-ui, React components based on material-ui
-/* eslint-disable no-unused-vars */
+// Import components from material-ui :D
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import AppBar from "material-ui/AppBar";
+import Toolbar from "material-ui/Toolbar";
+import Text from "material-ui/Text";
 import Paper from "material-ui/Paper";
-import { Button, Input, Progress, Segment } from "semantic-ui-react";
-/* eslint-enable */
+// Import main App component.
+import App from "./App";
 
-// sleep function to wait for some time.
-function sleep(s) {
-  return new Promise(resolve => setTimeout(resolve, s * 1000));
-}
+// Define the chat sheet contents.
+/* eslint-disable no-multi-str */
+const cheatSheet1 = "Type in the name of the PROCESS in process name, not the name of the gam\
+e. ps ax is your buddy, run this command to find all running processes. If you opened your game j\
+ust now, it'll be the 3rd last or so.";
+const cheatSheet2 = "1 hour = 60 minutes and 1 minute = 60 seconds. You can use both fields a\
+t once and the values will be converted and added.";
+const styleCheatSheet = {
+  marginLeft: 10,
+  marginRight: 10,
+};
+/* eslint-enable no-multi-str */
 
-// Our main React component (and only one)
-export default class Index extends React.Component<any, any, any> {
-  constructor(props) {
-    super(props);
+// Define main component.
+const Index = () => (
+  <MuiThemeProvider>
+    <div>
+      <AppBar style={{ position: "relative", marginBottom: 10, background: "#00796B" }}>
+        <Toolbar>
+          <Text
+            type="title" colorInherit
+          >Decaffeinater - For those who spend too much time on apps :3</Text>
+        </Toolbar>
+      </AppBar>
+      <App />
+      <Paper elevation={8} style={{ marginTop: 10 }}>
+        <Text type="headline" component="h3" align="center" style={styleCheatSheet}>Cheat sheet!</Text>
+        <Text type="body1" component="p" style={{ margin: 10 }}>{cheatSheet1}</Text>
+        <Text type="body1" component="p" style={styleCheatSheet}>{cheatSheet2}</Text>
+      </Paper>
+    </div>
+  </MuiThemeProvider>
+);
 
-    // Set up initial configuration for state.
-    this.state = {
-      time: 0,
-      process: "",
-      countdown: 0,
-      hours: 0,
-      inProcess: false,
-    };
-
-    // Bind functions here.
-    // flow-disable-next-line
-    this.onStart = this.onStart.bind(this);
-  }
-
-  // click handler to start the countdown till process terminates.
-  async onStart() {
-    // initial variables here.
-    let i = 0;
-    // following 3 lines prevents user from tampering state during countdown.
-    const currentState = JSON.parse(JSON.stringify(this.state));
-    const time = (currentState.time * 60) + (currentState.hours * 3600);
-    const process = currentState.process;
-    this.setState({ inProcess: true });
-    // wait 1 second, then add 1 to this.state.countdown for (time) times.
-    for (i = 0; i < time; i += 1) {
-      // eslint-disable-next-line
-      await sleep(1);
-      this.setState({ countdown: this.state.countdown + 1 });
-    }
-    ipcRenderer.send("iCanKill?", process);     // send ipc message to main proc to kill process.
-    this.setState({ countdown: 0, inProcess: false });          // reset countdown :D
-  }
-
-  // This function is big, but it's 90% styling, nothing of interest here.
-  render() {
-    const absTimer = this.state.time * 60 + this.state.hours * 3600;
-    return (
-      <MuiThemeProvider>
-        <Paper elevation={8}>
-          <Input
-            label="Time (in hours)"
-            type="number" fluid
-            placeholder="Insert amount of time to play in hours."
-            onChange={(e) => {
-              if (!this.state.inProcess) {
-                this.setState({ hours: e.target.value });
-              }
-            }}
-          />
-          <Input
-            label="Time (in minutes)"
-            type="number" fluid
-            placeholder="Insert amount of time to play in minutes."
-            onChange={(e) => {
-              if (!this.state.inProcess) {
-                this.setState({ time: e.target.value });
-              }
-            }}
-          />
-          <Input
-            label="Process"
-            type="text" fluid
-            placeholder="Insert the process name of the app."
-            onChange={(e) => {
-              if (!this.state.inProcess) {
-                this.setState({ process: e.target.value });
-              }
-            }}
-          />
-          <br />
-          <Button onClick={this.onStart} content="Click to start" inverted fluid color="green" />
-          <br />
-          <div />
-          <Progress
-            value={this.state.countdown}
-            total={absTimer}
-            indicating autoSuccess
-            color="teal"
-          >Time left: {absTimer - this.state.countdown} seconds left, out of {absTimer} seconds.
-          </Progress>
-        </Paper>
-      </MuiThemeProvider>
-    );
-  }
-}
-
-// Render final app to the screen :D
 ReactDOM.render(<Index />, document.getElementById("app"));
