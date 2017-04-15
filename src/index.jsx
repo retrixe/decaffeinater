@@ -37,9 +37,11 @@ const Index = () => (
       </AppBar>
       <App />
       <Paper elevation={8} style={{ marginTop: 10 }}>
+        <br />
         <Text type="headline" component="h3" align="center" style={styleCheatSheet}>Cheat sheet!</Text>
         <Text type="body1" component="p" style={{ margin: 10 }}>{cheatSheet1}</Text>
         <Text type="body1" component="p" style={styleCheatSheet}>{cheatSheet2}</Text>
+        <br />
       </Paper>
     </div>
   </MuiThemeProvider>

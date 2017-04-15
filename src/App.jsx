@@ -22,10 +22,10 @@ export default class App extends React.Component<any, any, any> {
 
     // Set up initial configuration for state.
     this.state = {
-      time: 0,
+      time: "",
       process: "",
       countdown: 0,
-      hours: 0,
+      hours: "",
       inProcess: false,
     };
 
@@ -59,10 +59,12 @@ export default class App extends React.Component<any, any, any> {
     const countdown = this.state.countdown;
     return (
       <Paper elevation={8}>
+        <div style={{ height: "10px" }} />
         <TextField
           label="Time (in hours)"
-          type="number" style={{ margin: 10 }}
-          value="Insert amount of time to play in hours."
+          type="number" style={{ marginRight: 10, marginLeft: 10, fontFamily: "Roboto" }}
+          value={this.state.hours}
+          placeholder="Insert amount of time to play in hours."
           onChange={(e) => {
             if (!this.state.inProcess) {
               this.setState({ hours: e.target.value });
@@ -71,8 +73,9 @@ export default class App extends React.Component<any, any, any> {
         />
         <TextField
           label="Time (in minutes)"
-          type="number" style={{ margin: 10 }}
-          value="Insert amount of time to play in minutes."
+          type="number" style={{ margin: 10, fontFamily: "Roboto" }}
+          value={this.state.time}
+          placeholder="Insert amount of time to play in minutes."
           onChange={(e) => {
             if (!this.state.inProcess) {
               this.setState({ time: e.target.value });
@@ -81,15 +84,16 @@ export default class App extends React.Component<any, any, any> {
         />
         <TextField
           label="Process"
-          type="text" style={{ margin: 10 }}
-          value="Insert the process name of the app."
+          type="text" style={{ margin: 10, fontFamily: "Roboto" }}
+          value={this.state.process}
+          placeholder="Insert the process name of the app."
           onChange={(e) => {
             if (!this.state.inProcess) {
               this.setState({ process: e.target.value });
             }
           }}
         />
-        {/* change value to placeholder, fix progress, fix input */}
+        {/* fix progress */}
         <Button
           onClick={this.onStart} raised accent
           style={{ marginBottom: 10, marginLeft: 10 }}
@@ -97,7 +101,7 @@ export default class App extends React.Component<any, any, any> {
         <br />
         <LinearProgress
           style={{ marginLeft: 10, marginBottom: 10, marginRight: 10 }}
-          value={(absTimer - countdown) * 100}
+          value={(countdown / absTimer) * 100}
           mode="determinate"
         />
         <Text
