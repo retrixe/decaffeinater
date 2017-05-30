@@ -5,3 +5,5 @@ app/index.js.map
 app/main.js
 app/main.js.map
 app/index.html
+npm-debug.log
+yarn-error.log
