@@ -3,5 +3,11 @@
 </head>
 <body>
   <div id="app"><h1>Loading...</h1></div>
-  <script src="index.js"></script>
+  <script>
+  const ReactDOM = require("react-dom");
+  const { createElement } = require("react");
+  require("babel-register");
+  const Index = require("./index");
+  ReactDOM.render(createElement(Index, null), document.getElementById("app"));
+  </script>
 </body>

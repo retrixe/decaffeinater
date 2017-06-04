@@ -1,14 +1,13 @@
 // @flow
-import "babel-polyfill";                     // polyfill to use async/await.
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { ipcRenderer } from "electron";        // ipc communication to main process.
-import React from "react";
+const { ipcRenderer } = require("electron");        // ipc communication to main process.
+const React = require("react");
 // Following imports for material-ui, React components based on material-ui
-import Paper from "material-ui/Paper";
-import TextField from "material-ui/TextField";
-import Button from "material-ui/Button";
-import Text from "material-ui/Text";
-import { LinearProgress } from "material-ui/Progress";
+const Paper = require("material-ui/Paper");
+const TextField = require("material-ui/TextField");
+const Button = require("material-ui/Button");
+const Text = require("material-ui/Typography");
+const { LinearProgress } = require("material-ui/Progress");
 
 // sleep function to wait for some time.
 function sleep(s) {
@@ -16,9 +15,9 @@ function sleep(s) {
 }
 
 // Our main React component (and only one)
-export default class App extends React.Component<any, any, any> {
-  constructor(props) {
-    super(props);
+class App extends React.Component<any, any, any> {
+  constructor() {
+    super();
 
     // Set up initial configuration for state.
     this.state = {
@@ -55,14 +54,15 @@ export default class App extends React.Component<any, any, any> {
 
   // This function is big, but it's 90% styling, nothing of interest here.
   render() {
-    const absTimer = this.state.time * 60 + this.state.hours * 3600;
+    const absTimer = (this.state.time * 60) + (this.state.hours * 3600);
     const countdown = this.state.countdown;
     return (
       <Paper elevation={8}>
         <div style={{ height: "10px" }} />
         <TextField
           label="Time (in hours)"
-          type="number" style={{ marginRight: 10, marginLeft: 10, fontFamily: "Roboto" }}
+          type="number"
+          style={{ marginRight: 10, marginLeft: 10, fontFamily: "Roboto" }}
           value={this.state.hours}
           placeholder="Insert amount of time to play in hours."
           onChange={(e) => {
@@ -73,7 +73,8 @@ export default class App extends React.Component<any, any, any> {
         />
         <TextField
           label="Time (in minutes)"
-          type="number" style={{ margin: 10, fontFamily: "Roboto" }}
+          type="number"
+          style={{ margin: 10, fontFamily: "Roboto" }}
           value={this.state.time}
           placeholder="Insert amount of time to play in minutes."
           onChange={(e) => {
@@ -84,7 +85,8 @@ export default class App extends React.Component<any, any, any> {
         />
         <TextField
           label="Process"
-          type="text" style={{ margin: 10, fontFamily: "Roboto" }}
+          type="text"
+          style={{ margin: 10, fontFamily: "Roboto" }}
           value={this.state.process}
           placeholder="Insert the process name of the app."
           onChange={(e) => {
@@ -95,7 +97,9 @@ export default class App extends React.Component<any, any, any> {
         />
         {/* fix progress */}
         <Button
-          onClick={this.onStart} raised accent
+          onClick={this.onStart}
+          raised
+          accent
           style={{ marginBottom: 10, marginLeft: 10 }}
         >Click to start timer.</Button>
         <br />
@@ -105,9 +109,12 @@ export default class App extends React.Component<any, any, any> {
           mode="determinate"
         />
         <Text
-          type="caption" style={{ marginLeft: 10, paddingBottom: 10 }}
+          type="caption"
+          style={{ marginLeft: 10, paddingBottom: 10 }}
         >Time left: {absTimer - countdown} seconds left, out of {absTimer} seconds.</Text>
       </Paper>
     );
   }
 }
+
+module.exports = App;

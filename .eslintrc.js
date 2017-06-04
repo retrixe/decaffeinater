@@ -1,16 +1,16 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es6": true
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true
+  },
+  "extends": "eslint-config-airbnb",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true
     },
-    "extends": "eslint-config-airbnb",
-    "parser": "babel-eslint",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "experimentalObjectRestSpread": true,
-            "jsx": true
-        },
         "sourceType": "module"
     },
     "plugins": [
@@ -41,14 +41,9 @@ module.exports = {
             "args": "after-used"
           }
         ],
-        "no-mixed-operators": [
-          "off"
-        ],
-        "no-var": [
-            "off"
-        ],
-        "camelcase": [
-            "off"
-        ]
+        // For global variable definitions.
+        "no-var": "off",
+        // For JSX in .js files.
+        "react/jsx-filename-extension": "off",
     }
 }
