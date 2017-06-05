@@ -1,21 +1,25 @@
 // @flow
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { ipcRenderer } = require("electron");        // ipc communication to main process.
-const React = require("react");
+const React: Object = require("react");
 // Following imports for material-ui, React components based on material-ui
-const Paper = require("material-ui/Paper");
-const TextField = require("material-ui/TextField");
-const Button = require("material-ui/Button");
-const Text = require("material-ui/Typography");
+const Paper: React.createElement = require("material-ui/Paper");
+const TextField: React.createElement = require("material-ui/TextField");
+const Button: React.createElement = require("material-ui/Button");
+const Text: React.createElement = require("material-ui/Typography");
 const { LinearProgress } = require("material-ui/Progress");
 
-// sleep function to wait for some time.
-function sleep(s) {
-  return new Promise(resolve => setTimeout(resolve, s * 1000));
+// React component state types.
+type state = {
+  time: number,
+  process: string,
+  countdown: number,
+  hours: number,
+  inProcess: boolean
 }
 
 // Our main React component (and only one)
-class App extends React.Component<any, any, any> {
+class App extends React.Component<void, void, any> {
   constructor() {
     super();
 
@@ -33,19 +37,27 @@ class App extends React.Component<any, any, any> {
     this.onStart = this.onStart.bind(this);
   }
 
+  state: {
+    time: any,
+    process: string,
+    countdown: number,
+    hours: any,
+    inProcess: boolean
+  }
+
   // click handler to start the countdown till process terminates.
   async onStart() {
     // initial variables here.
     let i = 0;
     // following 3 lines prevents user from tampering state during countdown.
-    const currentState = JSON.parse(JSON.stringify(this.state));
+    const currentState: state = JSON.parse(JSON.stringify(this.state));
     const time = (currentState.time * 60) + (currentState.hours * 3600);
     const process = currentState.process;
     this.setState({ inProcess: true });
     // wait 1 second, then add 1 to this.state.countdown for (time) times.
     for (i = 0; i < time; i += 1) {
       // eslint-disable-next-line
-      await sleep(1);
+      await new Promise(resolve => setTimeout(resolve, 1000));
       this.setState({ countdown: this.state.countdown + 1 });
     }
     ipcRenderer.send("iCanKill?", process);     // send ipc message to main proc to kill process.
@@ -65,7 +77,7 @@ class App extends React.Component<any, any, any> {
           style={{ marginRight: 10, marginLeft: 10, fontFamily: "Roboto" }}
           value={this.state.hours}
           placeholder="Insert amount of time to play in hours."
-          onChange={(e) => {
+          onChange={(e: { target: { value: string }}) => {
             if (!this.state.inProcess) {
               this.setState({ hours: e.target.value });
             }

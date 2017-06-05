@@ -5,9 +5,8 @@
   <div id="app"><h1>Loading...</h1></div>
   <script>
   const ReactDOM = require("react-dom");
-  const { createElement } = require("react");
-  require("babel-register");
+  const React = require("react");
   const Index = require("./index");
-  ReactDOM.render(createElement(Index, null), document.getElementById("app"));
+  ReactDOM.render(<Index />, document.getElementById("app"));
   </script>
 </body>

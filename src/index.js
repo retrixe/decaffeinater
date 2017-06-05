@@ -2,11 +2,11 @@
 // const React.
 const React = require("react");
 // Import components from material-ui :D
-const MuiThemeProvider = require("material-ui/styles/MuiThemeProvider");
-const AppBar = require("material-ui/AppBar");
-const Toolbar = require("material-ui/Toolbar");
-const Text = require("material-ui/Typography");
-const Paper = require("material-ui/Paper");
+const MuiThemeProvider: React.createElement = require("material-ui/styles/MuiThemeProvider");
+const AppBar: React.createElement = require("material-ui/AppBar");
+const Toolbar: React.createElement = require("material-ui/Toolbar");
+const Text: React.createElement = require("material-ui/Typography");
+const Paper: React.createElement = require("material-ui/Paper");
 // Import main App component.
 const App = require("./App");
 

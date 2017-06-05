@@ -13,6 +13,12 @@
     "start": "electron .",
     "debug": "electron . --inspect=9222 --remote-debugging-port=9229",
     "dist": "build",
+    "build": "electron-packager . Decaffeinater --ignore \"/(.*|*.yml|*.js)/\" --asar --out=dist",
+    "build-win": "npm run build --- --icon build/icon.ico",
+    "build-mac": "npm run build --- --icon build/icon.icns",
+    "make-exe": "npm run build-win && node build/winBuild.js",
+    "make-dmg": "npm run build-mac && node build/macBuild.js",
+    "dist": "build",
     "pack": "build --dir",
     "test": "mocha --require babel-register"
   },
@@ -23,7 +29,6 @@
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
-    "@types/babel-core": "^6.7.14",
     "@types/chai": "^4.0.0",
     "@types/mocha": "^2.2.41",
     "@types/react": "^15.0.26",
@@ -34,11 +39,11 @@
     "babel-register": "^6.24.1",
     "chai": "^4.0.1",
     "devtron": "^1.4.0",
-    "electron": "1.7.2",
     "electron-builder": "^13.9.0",
     "electron-devtools-installer": "^2.2.0",
     "electron-installer-dmg": "^0.2.1",
     "electron-packager": "^8.7.0",
+    "electron-prebuilt-compile": "^1.7.1",
     "electron-winstaller": "^2.5.2",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
