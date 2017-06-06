@@ -39,10 +39,9 @@ const branch = childProcess.execSync("git rev-parse --abbrev-ref HEAD").toString
 
 if (branch === "deploy") {
   editGitignore(newGitignoreContent);
-  let random = "lol";
-  random = "git config user.name \"Travis\" && git config user.email \"$COMMIT_AUTHOR_EMAIL\"";
-  childProcess.execSync(random);
-  childProcess.execSync("git add dist/*");
+  const cnfg = "git config user.name \"Travis\" && git config user.email \"$COMMIT_AUTHOR_EMAIL\"";
+  childProcess.execSync(cnfg);
+  childProcess.execSync("git add .");
   childProcess.execSync("git commit -m \"[ci skip] Deploy!!! :D\"");
   childProcess.execSync("git push");
 }
