@@ -2,7 +2,6 @@
 /* eslint-env node */
 /* eslint-disable import/no-extraneous-dependencies */
 const { app, BrowserWindow, ipcMain } = require("electron");
-require("babel-register");
 const killProcess = require("./killProc");
 
 // Keep a global reference of the window object, if you don't, the window will
