@@ -13,13 +13,12 @@
     "start": "electron .",
     "debug": "electron . --inspect=9222 --remote-debugging-port=9229",
     "dist": "build",
-    "build": "electron-compile ./src && electron-packager . Decaffeinater --asar --out=dist --overwrite",
-    "build-win": "set NODE_ENV=production && npm run build --- --icon build/icon.ico",
-    "build-mac": "export NODE_ENV=production && npm run build --- --icon build/icon.icns",
-    "build-linux": "export NODE_ENV=production && npm run build",
+    "build": "export NODE_ENV=production && electron-compile ./src && electron-packager . decaffeinater --out=dist --overwrite",
+    "build-win": "set NODE_ENV=production && electron-compile ./src && electron-packager . decaffeinater --asar --out=dist --overwrite --icon build/icon.ico",
+    "build-mac": "npm run build --- --icon build/icon.icns",
     "make-exe": "npm run build-win && node build/winBuild.js",
     "make-dmg": "npm run build-mac && node build/macBuild.js",
-    "pack": "build --dir",
+    "make-linux-installer": "npm run build && node build/linuxBuild.js",
     "test": "mocha --require babel-register"
   },
   "dependencies": {
@@ -41,12 +40,13 @@
     "chai": "^4.0.1",
     "devtron": "^1.4.0",
     "electron-builder": "^13.9.0",
+    "electron-compile": "^6.4.1",
     "electron-devtools-installer": "^2.2.0",
     "electron-installer-dmg": "^0.2.1",
-    "electron-installer-linux": "^1.0.1",
+    "electron-installer-linux": "^1.1.1",
     "electron-packager": "^8.7.0",
     "electron-prebuilt-compile": "^1.7.1",
-    "electron-winstaller": "^2.5.2",
+    "electron-winstaller": "^2.6.2",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-flowtype": "^2.34.0",
@@ -56,7 +56,6 @@
     "flow-bin": "^0.47.0",
     "mocha": "^3.4.2"
   },
-  "optionalDependencies": {},
   "build": {
     "appId": "com.decaffeinater",
     "mac": {

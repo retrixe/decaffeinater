@@ -4,6 +4,7 @@
 .*/node_modules/material-ui/.*flow
 .*/node_modules/electron-packager/test/fixtures/infer-malformed-json/package.json
 .*/node_modules/jss/lib/plugins/RegularRule.js.flow
+.*/node_modules/typechecker/es2015/.*
 
 [include]
 
