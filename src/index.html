@@ -6,7 +6,11 @@
   <script>
   const ReactDOM = require("react-dom");
   const React = require("react");
+  require("babel-register")({
+    babelrc: false,
+    presets: ["react"]
+  });
   const Index = require("./index");
-  ReactDOM.render(<Index />, document.getElementById("app"));
+  ReactDOM.render(React.createElement(Index, null), document.getElementById("app"));
   </script>
 </body>
