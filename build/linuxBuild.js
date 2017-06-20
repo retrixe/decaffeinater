@@ -8,12 +8,14 @@ console.log("If you are generating a .rpm installer, please install rpm or rpm-b
 console.log("If you are generating a .deb installer, please install fakeroot and dpkg.");
 
 let arch = process.arch;
-if (process.arch === "ia32") arch = "x86";
+if (process.arch === "x64") arch = "amd64";
+if (process.arch === "x86") arch = "i386";
+if (process.arch === "ia32") arch = "i386";
 
 const options = {
-  src: `dist/decaffeinater-linux-${arch}`,
+  src: `dist/decaffeinater-linux-${process.arch}`,
   dest: "dist/installers",
-  arch: process.arch,
+  arch,
   categories: ["Utility"],
   icon: {
     "16x16": "build/icons/16x16.png",
@@ -26,10 +28,8 @@ const flatpakOptions = Object.assign(options, { id: "decaffeinater" });
 
 const callback = (err) => {
   if (err) {
-    return () => {
-      console.error(err, err.stack);
-      return err;
-    };
+    console.error(err, err.stack);
+    return err;
   }
   console.log(`Successfully created package at ${options.dest}`);
   return true;

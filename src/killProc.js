@@ -13,7 +13,7 @@ type process = number | string;
 function killProcess(proc /*: process */, platform /*: string */) {
   if (platform === "win32") {
     // eslint-disable-next-line no-unused-vars
-    execSync(`taskkill /IM ${proc} /F`, (error, stdout, stderr) => {
+    execSync(`taskkill /IM ${proc} /F`, (error/*: string */, stdout/*: string */, stderr/*: string */) => {
       if (error) {
         console.error(`Failure to execute: ${error}`);
         return false;
@@ -22,7 +22,7 @@ function killProcess(proc /*: process */, platform /*: string */) {
     });
   } else if (platform !== "win32") {
     // eslint-disable-next-line no-unused-vars
-    execSync(`killall -9 ${proc}`, (error, stdout, stderr) => {
+    execSync(`killall -9 ${proc}`, (error/*: string */, stdout/*: string */, stderr/*: string */) => {
       if (error) {
         console.error(`Failure to execute: ${error}`);
         return false;
