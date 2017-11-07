@@ -8,29 +8,29 @@ Just adding, the remaining issue is the
 module returning undefined. */
 
 // Importing necessary libraries.
-import process from "process";
+import process from 'process'
 
 // Importing assertion module and defining shortcuts.
-import test from "ava";
+import test from 'ava'
 
 // Importing the thing to test.
-import killProcess from "../src/killProc";
+import killProcess from '../src/killProc'
 
 // Starting tests.
-test("Killing processes", (t) => {
+test('Killing processes', (t) => {
   // Testing killProcess() works properly.
-  test("should execute without errors", () => {
+  test('should execute without errors', () => {
     // Call killProcess on notepad/gedit
     const testFunc = () => {
-      if (process.platform !== "win32") {
-        return killProcess("gedit", process.platform);
+      if (process.platform !== 'win32') {
+        return killProcess('gedit', process.platform)
       }
-      return killProcess("notepad.exe", process.platform);
-    };
-    t.is(testFunc(), true);
-  });
+      return killProcess('notepad.exe', process.platform)
+    }
+    t.is(testFunc(), true)
+  })
 
-  test("should kill the process", () => {
-    t.is("wip", "wip");
-  });
-});
+  test('should kill the process', () => {
+    t.is('wip', 'wip')
+  })
+})

@@ -71,7 +71,7 @@ Finally, open a terminal window in the folder where the app is located and execu
 - [ ] Node.js v6/v7
 - [ ] Yarn package manager instead of npm
 - [ ] React development tools on Electron ([refer here](https://github.com/electron/electron/blob/master/docs/tutorial/devtools-extension.md))
-- [ ] DevTron on Electron ([refer here] (electron.atom.io/devtron))
+- [ ] DevTron on Electron ([refer here](electron.atom.io/devtron))
 
 #### The basic directory structure.
 - `src/` contains everything that is executed.

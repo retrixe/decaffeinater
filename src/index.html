@@ -8,9 +8,12 @@
   const React = require("react");
   require("babel-register")({
     babelrc: false,
-    presets: ["react"]
+    presets: ["react", ["env", {
+      "targets": {
+        "electron": "1.7"
+      }
+    }]]
   });
   const Index = require("./index");
-  ReactDOM.render(React.createElement(Index, null), document.getElementById("app"));
   </script>
 </body>

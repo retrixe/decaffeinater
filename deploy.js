@@ -9,8 +9,8 @@ for the repo ibujs/decaffeinater on GitHub.
 Update this file when you update .gitignore */
 
 // Imports.
-const fs = require("fs");
-const childProcess = require("child_process");
+const fs = require('fs')
+const childProcess = require('child_process')
 
 // New gitignore content on condition met.
 const newGitignoreContent = `node_modules/
@@ -18,30 +18,30 @@ app/index.js
 app/index.js.map
 app/main.js
 app/main.js.map
-app/index.html`;
+app/index.html`
 
 // Edit gitignore with new content with this function.
-function editGitignore(newGitignore) {
+function editGitignore (newGitignore) {
   // Remove the git file.
-  fs.unlinkSync("./.gitignore");
+  fs.unlinkSync('./.gitignore')
 
   // Create new gitignore.
-  fs.openSync("./.gitignore", "w+");
+  fs.openSync('./.gitignore', 'w+')
 
   // Write new content to file.
-  fs.writeFileSync("./.gitignore", newGitignore, (err) => {
-    if (err) throw err;
-    childProcess.execSync("git add dist/* && git commit -m \"Deploy artifacts\" && git push");
-  });
+  fs.writeFileSync('./.gitignore', newGitignore, (err) => {
+    if (err) throw err
+    childProcess.execSync('git add dist/* && git commit -m "Deploy artifacts" && git push')
+  })
 }
 
-const branch = childProcess.execSync("git rev-parse --abbrev-ref HEAD").toString();
+const branch = childProcess.execSync('git rev-parse --abbrev-ref HEAD').toString()
 
-if (branch === "deploy") {
-  editGitignore(newGitignoreContent);
-  const cnfg = "git config user.name \"Travis\" && git config user.email \"$COMMIT_AUTHOR_EMAIL\"";
-  childProcess.execSync(cnfg);
-  childProcess.execSync("git add .");
-  childProcess.execSync("git commit -m \"[ci skip] Deploy!!! :D\"");
-  childProcess.execSync("git push");
+if (branch === 'deploy') {
+  editGitignore(newGitignoreContent)
+  const cnfg = 'git config user.name "Travis" && git config user.email "$COMMIT_AUTHOR_EMAIL"'
+  childProcess.execSync(cnfg)
+  childProcess.execSync('git add .')
+  childProcess.execSync('git commit -m "[ci skip] Deploy!!! :D"')
+  childProcess.execSync('git push')
 }

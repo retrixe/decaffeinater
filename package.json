@@ -12,22 +12,23 @@
   "scripts": {
     "start": "electron .",
     "debug": "electron . --inspect=9222 --remote-debugging-port=9229",
-    "dist": "build",
     "build": "export NODE_ENV=production && electron-packager . decaffeinater --out=dist --overwrite",
     "build-win": "set NODE_ENV=production && electron-packager . decaffeinater --asar --out=dist --overwrite --icon build/icon.ico",
     "build-mac": "npm run build --- --icon build/icon.icns",
     "make-exe": "npm run build-win && node build/winBuild.js",
     "make-dmg": "npm run build-mac && node build/macBuild.js",
     "make-linux-installer": "npm run build && node build/linuxBuild.js",
-    "test": "mocha --require babel-register"
+    "lint": "flow check && eslint .",
+    "test": "ava"
   },
   "dependencies": {
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.24.1",
-    "electron": "1.7.3",
-    "material-ui": "1.0.0-alpha.19",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "electron": "1.8.2-beta.2",
+    "material-ui": "^1.0.0-beta.20",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "devDependencies": {
     "@types/electron": "^1.6.10",
@@ -39,21 +40,22 @@
     "ava": "^0.19.1",
     "babel-eslint": "^7.2.3",
     "babel-polyfill": "^6.23.0",
-    "babel-preset-env": "^1.5.2",
     "devtron": "^1.4.0",
-    "electron-builder": "13.11.1",
     "electron-devtools-installer": "^2.2.0",
     "electron-installer-dmg": "^0.2.1",
     "electron-installer-linux": "^1.1.1",
     "electron-packager": "^8.7.0",
     "electron-winstaller": "^2.6.3",
     "eslint": "^3.19.0",
-    "eslint-config-airbnb": "^15.0.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-config-standard-react": "^5.0.0",
     "eslint-plugin-flowtype": "^2.34.0",
     "eslint-plugin-import": "^2.3.0",
-    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-react": "^7.0.1",
-    "flow-bin": "^0.48.0"
+    "eslint-plugin-standard": "^3.0.1",
+    "flow-bin": "0.58.0"
   },
   "build": {
     "appId": "com.decaffeinater",
