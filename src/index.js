@@ -59,4 +59,4 @@ const Index = () => (
   </div>
 )
 
-render(<Index />, document.getElementById('app'))
+render(<Index />, document.getElementById('root'))

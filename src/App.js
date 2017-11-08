@@ -1,13 +1,13 @@
 // @flow
 // eslint-disable-next-line import/no-extraneous-dependencies
-const { ipcRenderer } = require('electron')        // ipc communication to main process.
-const React: Object = require('react')
+import { ipcRenderer } from 'electron'       // ipc communication to main process.
+import React from 'react'
 // Following imports for material-ui, React components based on material-ui
-const Paper: React.createElement = require('material-ui/Paper')
-const TextField: React.createElement = require('material-ui/TextField')
-const Button: React.createElement = require('material-ui/Button')
-const Text: React.createElement = require('material-ui/Typography')
-const { LinearProgress } = require('material-ui/Progress')
+import Paper from 'material-ui/Paper'
+import TextField from 'material-ui/TextField'
+import Text from 'material-ui/Typography'
+import { LinearProgress } from 'material-ui/Progress'
+import Button from 'material-ui/Button'
 
 // React component state types.
 type state = {
@@ -19,30 +19,18 @@ type state = {
 }
 
 // Our main React component (and only one)
-export default class App extends React.Component<void, void, any> {
+export default class App extends React.Component<{}, state> {
   constructor () {
     super()
 
     // Set up initial configuration for state.
     this.state = {
-      time: '',
+      time: 0,
       process: '',
       countdown: 0,
-      hours: '',
+      hours: 0,
       inProcess: false
     }
-
-    // Bind functions here.
-    // flow-disable-next-line
-    this.onStart = this.onStart.bind(this)
-  }
-
-  state: {
-    time: any,
-    process: string,
-    countdown: number,
-    hours: any,
-    inProcess: boolean
   }
 
   // click handler to start the countdown till process terminates.
@@ -77,7 +65,7 @@ export default class App extends React.Component<void, void, any> {
           style={{ marginRight: 10, marginLeft: 10, fontFamily: 'Roboto' }}
           value={this.state.hours}
           placeholder='Insert amount of time to play in hours.'
-          onChange={(e: { target: { value: string }}) => {
+          onChange={(e: { target: { value: number }}) => {
             if (!this.state.inProcess) {
               this.setState({ hours: e.target.value })
             }
