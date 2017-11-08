@@ -18,7 +18,7 @@ cache:
 
 script:
   - yarn generate-lock-entry
-  - yarn dist -- --mac pkg dmg
+  - yarn build-mac
 # Testing doesn't work properly rn.
 #  - yarn test
   - node deploy.js

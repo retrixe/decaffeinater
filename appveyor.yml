@@ -20,7 +20,7 @@ install:
   - yarn
 
 build_script:
-  - yarn dist -- --win
+  - yarn build-win
 
 # I dunno how to appveyor tests and tests dont work.
 #test:

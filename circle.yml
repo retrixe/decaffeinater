@@ -17,7 +17,7 @@ compile:
     - sudo apt install -y rpm graphicsmagick xz-utils
   override:
   # update with yarn when 0.23 hits rc
-    - npm run dist -- --linux deb rpm tar.gz
+    - npm run build
   post:
     - mv dist/ $CIRCLE_ARTIFACTS/
 
