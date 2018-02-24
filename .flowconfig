@@ -1,16 +1,13 @@
-[ignore]
-# Following packages to be ignored due to type errors. Wait for material-ui to hit stable.
-.*/node_modules/eslint-plugin-jsx-a11y/.*
-.*/node_modules/material-ui/.*flow
-.*/node_modules/electron-packager/test/fixtures/infer-malformed-json/package.json
-.*/node_modules/jss/lib/plugins/RegularRule.js.flow
-.*/node_modules/typechecker/es2015/.*
-
 [include]
 
 [libs]
-node_modules/jss/flow-typed
+
+[ignore]
+# Following packages to be ignored due to type errors.
+.*/node_modules/electron-packager/test/fixtures/infer-malformed-json/package.json
+.*/node_modules/typechecker/es2015/.*
+.*/node_modules/jss/flow-typed/cssom.js
+
 [options]
 emoji=true
 suppress_comment= \\(.\\|\n\\)*\\flow-disable-next-line
-unsafe.enable_getters_and_setters=true

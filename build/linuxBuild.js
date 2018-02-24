@@ -2,10 +2,12 @@
 const debian = require('electron-installer-linux/debian')
 const redhat = require('electron-installer-linux/redhat')
 const flatpak = require('electron-installer-linux/flatpak')
+const snap = require('electron-installer-snap')
 
 console.log('If you are generating a flatpak installer, please install flatpak and flatpak-builder.')
 console.log('If you are generating a .rpm installer, please install rpm or rpm-build depending on your distro.')
 console.log('If you are generating a .deb installer, please install fakeroot and dpkg.')
+console.log('If you are generating a snap installer, please install snapd and snapcraft (via snap).')
 
 let arch = process.arch
 if (process.arch === 'x64') arch = 'amd64'
@@ -25,6 +27,11 @@ const options = {
   }
 }
 const flatpakOptions = Object.assign(options, { id: 'decaffeinater' })
+const snapOptions = Object.assign(options, {
+  confinement: 'classic',
+  grade: 'stable',
+  description: `This thing is for people who spend way too much time gaming when they should be utilizing time for more productive purposes. This app fixes that. Essentially, select the time, select the app, and use the app until decaffeinater automatically kills it.`
+})
 
 const callback = (err) => {
   if (err) {
@@ -40,10 +47,13 @@ if ('debian' in process.argv || 'redhat' in process.argv || 'flatpak' in process
     if (arg === 'debian') debian(options, callback)
     if (arg === 'redhat') redhat(options, callback)
     if (arg === 'flatpak') flatpak(flatpakOptions, callback)
+    if (arg === 'snap') {
+      snap(snapOptions)
+    }
     return true
   })
 } else {
-  console.log('No arguments given, generating .deb, .rpm and .flatpak.')
+  console.log('No arguments given, generating .deb, .rpm, snap and .flatpak.')
   debian(options, callback)
   redhat(options, callback)
   flatpak(flatpakOptions, callback)

@@ -8,7 +8,7 @@ Just adding, the remaining issue is the
 module returning undefined. */
 
 // Importing necessary libraries.
-import process from 'process'
+import { exec } from 'child_process'
 
 // Importing assertion module and defining shortcuts.
 import test from 'ava'
@@ -17,20 +17,27 @@ import test from 'ava'
 import killProcess from '../src/killProc'
 
 // Starting tests.
-test('Killing processes', (t) => {
-  // Testing killProcess() works properly.
-  test('should execute without errors', () => {
-    // Call killProcess on notepad/gedit
-    const testFunc = () => {
-      if (process.platform !== 'win32') {
-        return killProcess('gedit', process.platform)
-      }
-      return killProcess('notepad.exe', process.platform)
+// Testing killProcess() works properly.
+test('killProcess() should execute without errors', async (t) => {
+  // Run notepad or gedit.
+  if (process.platform !== 'win32') {
+    exec('notepad.exe')
+  }
+  exec('gedit')
+  function sleep (ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+  }
+  await sleep(800)
+  // Call killProcess on notepad/gedit
+  const testFunc = () => {
+    if (process.platform !== 'win32') {
+      return killProcess('gedit', process.platform)
     }
-    t.is(testFunc(), true)
-  })
+    return killProcess('notepad.exe', process.platform)
+  }
+  t.is(testFunc(), true)
+})
 
-  test('should kill the process', () => {
-    t.is('wip', 'wip')
-  })
+test('killProcess() should kill the process', (t) => {
+  t.is('wip', 'wip')
 })
